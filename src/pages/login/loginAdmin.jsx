@@ -18,7 +18,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../redux/reducer/authReducer";
 
-const LoginCashier = () => {
+const LoginAdmin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -54,12 +54,12 @@ const LoginCashier = () => {
             </Box>
             <Box>
               <Heading color={"#1A72DD"} fontSize={"24px"}>
-                Log in as Cashier
+                Log in as Admin
               </Heading>
             </Box>
           </HStack>
         </Box>
-        <Box marginTop={"10%"} width={"full"}>
+        <Box mt={"20%"} width={"full"}>
           <Box>
             <FormLabel fontWeight={"bold"}> Username </FormLabel>
             <Input
@@ -104,7 +104,7 @@ const LoginCashier = () => {
             Login
           </Button>
         </Box>
-        <Link to="#">
+        <Link to="/forgot-password">
           <Text color={"#1A72DD"}>Forgot Password?</Text>
         </Link>
       </VStack>
@@ -113,4 +113,4 @@ const LoginCashier = () => {
   );
 };
 
-export default LoginCashier;
+export default LoginAdmin;

@@ -6,7 +6,7 @@ const LoginScreen = () => {
   const navigate = useNavigate();
 
   const handleChange = () => {
-    navigate("/login-cashier");
+    navigate("/login-admin");
   };
   return (
     <>
@@ -30,7 +30,7 @@ const LoginScreen = () => {
             width={"100%"}
             borderRadius={"15px"}
             height={"63px"}
-            onClick={navigate("/")}
+            onClick={handleChange}
           >
             {" "}
             Log in as Admin{" "}
@@ -44,7 +44,6 @@ const LoginScreen = () => {
             width={"100%"}
             borderRadius={"15px"}
             height={"63px"}
-            onClick={handleChange}
           >
             {" "}
             Log in as Cashier{" "}
