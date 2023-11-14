@@ -56,7 +56,7 @@ const ForgotPassword = () => {
             </Box>
           </VStack>
         </Box>
-        <Box mt={"5%"}>
+        <Box mt={"4%"}>
           <Heading textAlign={"center"} fontSize={"35px"}>
             Lupa Kata Sandi
           </Heading>
@@ -64,8 +64,8 @@ const ForgotPassword = () => {
             Masukan Email anda untuk membuat kata sandi baru
           </Text>
         </Box>
-        <Box mt={"2vh"} width={"full"}>
-          <Box mt={"3vh"}>
+        <Box mt={"1.5vh"} width={"full"}>
+          <Box>
             <Input
               type="email"
               variant="filled"
