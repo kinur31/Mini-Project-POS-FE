@@ -1,11 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home";
+import LoginScreen from "./pages/login/loginScreen";
+import LoginCashier from "./pages/login/loginCashier";
 
 function App() {
-   return (
+  return (
     <>
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<LoginScreen />} />
+        <Route path="/login-cashier" element={<LoginCashier />} />
       </Routes>
     </>
   );
