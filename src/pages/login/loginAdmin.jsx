@@ -59,7 +59,7 @@ const LoginAdmin = () => {
             </Box>
           </HStack>
         </Box>
-        <Box mt={"20%"} width={"full"}>
+        <Box mt={"10%"} width={"full"}>
           <Box>
             <FormLabel fontWeight={"bold"}> Username </FormLabel>
             <Input
