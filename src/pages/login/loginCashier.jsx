@@ -104,7 +104,7 @@ const LoginCashier = () => {
             Login
           </Button>
         </Box>
-        <Link to="#">
+        <Link to="/forgot-password">
           <Text color={"#1A72DD"}>Forgot Password?</Text>
         </Link>
       </VStack>
