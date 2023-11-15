@@ -31,10 +31,6 @@ const ForgotPassword = () => {
     },
   });
 
-  // const handleChange = () => {
-  //   navigate("/");
-  // };
-
   return (
     <>
       <VStack margin={"5%"}>
