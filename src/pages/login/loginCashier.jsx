@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../redux/reducer/authReducer";
 
@@ -69,9 +69,9 @@ const LoginCashier = () => {
               size="lg"
               placeholder="Username"
               value={formik.values.username}
-              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               name="username"
+              onChange={formik.handleChange}
             />
           </Box>
           <Box mt={"3vh"}>
@@ -84,9 +84,9 @@ const LoginCashier = () => {
               size="lg"
               placeholder="At least 8 characters"
               value={formik.values.password}
-              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               name="password"
+              onChange={formik.handleChange}
             />
           </Box>
         </Box>

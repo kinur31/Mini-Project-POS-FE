@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const initialState = {
   user: {
@@ -79,6 +79,18 @@ export const keepLogin = () => {
       }
     } catch (err) {
       localStorage.removeItem("token");
+      alert(err?.response?.data);
+    }
+  };
+};
+
+export const forgotPassword = (email) => {
+  return async () => {
+    try {
+      await axios.post("http://localhost:8080/auth/forgot-password", {
+        email,
+      });
+    } catch (err) {
       alert(err?.response?.data);
     }
   };

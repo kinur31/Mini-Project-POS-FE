@@ -8,32 +8,27 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { AiOutlineDingtalk } from "react-icons/ai";
-// import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { login } from "../../redux/reducer/authReducer";
+import { forgotPassword } from "../../redux/reducer/authReducer";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
-      username: "",
-      password: "",
+      email: "",
     },
     onSubmit: async (values) => {
-      dispatch(login(values.username, values.password));
+      dispatch(forgotPassword(values.email));
       toast.success("Logged in");
-      // navigate("/");
+      navigate("/cek-email");
     },
   });
-
-  // const handleChange = () => {
-  //   navigate("/");
-  // };
 
   return (
     <>
@@ -73,9 +68,8 @@ const ForgotPassword = () => {
               height={"57px"}
               size="lg"
               placeholder="Email Anda"
-              value={formik.values.email}
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              value={formik.values.email}
               name="email"
             />
           </Box>

@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import LoginScreen from "./pages/login/loginScreen";
 import LoginCashier from "./pages/login/loginCashier";
 import ForgotPassword from "./pages/forgotPassword.jsx/forgotPassword";
-
+import CekEmail from "./pages/forgotPassword.jsx/cekEmail";
 function App() {
   return (
     <>
@@ -10,6 +10,7 @@ function App() {
         <Route path="/" element={<LoginScreen />} />
         <Route path="/login-cashier" element={<LoginCashier />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/cek-email" element={<CekEmail />} />
       </Routes>
     </>
   );
