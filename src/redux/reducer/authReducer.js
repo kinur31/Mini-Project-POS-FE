@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const initialState = {
   user: {
@@ -32,6 +33,7 @@ export const AuthReducer = createSlice({
     },
     loginSuccess: (state, action) => {
       state.isLogin = true;
+      toast.success("Logged in");
     },
     logoutSuccess: (state, action) => {
       state.isLogin = false;
