@@ -1,3 +1,5 @@
+import { React, useState } from "react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Box,
   HStack,
@@ -8,6 +10,8 @@ import {
   Input,
   Button,
   Text,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -19,6 +23,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../redux/reducer/authReducer";
 
 const LoginAdmin = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -77,18 +83,30 @@ const LoginAdmin = () => {
           </Box>
           <Box mt={"3vh"}>
             <FormLabel fontWeight={"bold"}> Password </FormLabel>
-            <Input
-              type="password"
-              variant="filled"
-              borderRadius={"15px"}
-              height={"65px"}
-              size="lg"
-              placeholder="At least 8 characters"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              name="password"
-            />
+            <InputGroup>
+              <Input
+                type={showPassword ? "text" : "password"}
+                variant="filled"
+                borderRadius={"15px"}
+                height={"65px"}
+                size="lg"
+                placeholder="At least 8 characters"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                required
+              />
+              <InputRightElement h={"full"}>
+                <Button
+                  variant={"ghost"}
+                  onClick={() =>
+                    setShowPassword((showPassword) => !showPassword)
+                  }
+                >
+                  {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
           </Box>
         </Box>
         <Box width={"full"} mt={"10vh"}>

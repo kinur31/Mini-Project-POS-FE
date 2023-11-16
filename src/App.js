@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import LoginScreen from "./pages/login/loginScreen";
 import LoginAdmin from "./pages/login/loginAdmin";
-import ForgotPassword from "./pages/forgotPassword/forgotPassword";
+import ForgotPassword from "./pages/forgotPassword/forgotPassword1";
 
 function App() {
   return (

@@ -13,7 +13,7 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { login } from "../../redux/reducer/authReducer";
+import { forgotPassword } from "../../redux/reducer/authReducer";
 
 const ForgotPassword = () => {
   const dispatch = useDispatch();
@@ -21,11 +21,10 @@ const ForgotPassword = () => {
 
   const formik = useFormik({
     initialValues: {
-      username: "",
-      password: "",
+      email: "",
     },
     onSubmit: async (values) => {
-      dispatch(login(values.username, values.password));
+      dispatch(forgotPassword(values.email));
       toast.success("Logged in");
       // navigate("/");
     },
