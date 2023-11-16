@@ -7,7 +7,7 @@ const CekEmail = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/login-cashier");
+    navigate("/login-admin");
   };
 
   return (
