@@ -10,7 +10,6 @@ import {
 import { AiOutlineDingtalk } from "react-icons/ai";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { forgotPassword } from "../../redux/reducer/authReducer";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +24,6 @@ const ForgotPassword = () => {
     },
     onSubmit: async (values) => {
       dispatch(forgotPassword(values.email));
-      toast.success("Logged in");
       navigate("/cek-email");
     },
   });
@@ -95,7 +93,6 @@ const ForgotPassword = () => {
           </Link>{" "}
         </Text>
       </VStack>
-      <ToastContainer />
     </>
   );
 };

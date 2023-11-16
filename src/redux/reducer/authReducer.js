@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import axios from "axios";
 
 const initialState = {
@@ -82,17 +81,12 @@ export const keepLogin = () => {
   };
 };
 
-export const forgotPassword = (email, password) => {
-  return async (dispatch) => {
+export const forgotPassword = (email) => {
+  return async () => {
     try {
-      const res = await axios.post("http://localhost:8080/auth/login", {
+      await axios.post("http://localhost:8080/auth/forgot-password", {
         email,
-        password,
       });
-
-      localStorage.setItem("token", res?.data?.data?.token);
-      dispatch(setUser(res?.data?.data?.user));
-      dispatch(loginSuccess());
     } catch (err) {
       alert(err?.response?.data);
     }
