@@ -8,16 +8,15 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { AiOutlineDingtalk } from "react-icons/ai";
-// import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { forgotPassword } from "../../redux/reducer/authReducer";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -25,15 +24,14 @@ const ForgotPassword = () => {
     },
     onSubmit: async (values) => {
       dispatch(forgotPassword(values.email));
-      toast.success("Logged in");
-      // navigate("/");
+      navigate("/cek-email");
     },
   });
 
   return (
     <>
       <VStack margin={"5%"}>
-        <Box className="title-tab" width={"40vw"} mt={"10%"}>
+        <Box className="title-tab" width={"40vw"} mt={"7%"}>
           <VStack>
             <Box
               bg={"#1A72DD"}
@@ -51,7 +49,7 @@ const ForgotPassword = () => {
             </Box>
           </VStack>
         </Box>
-        <Box mt={"5%"}>
+        <Box mt={"4%"}>
           <Heading textAlign={"center"} fontSize={"35px"}>
             Lupa Kata Sandi
           </Heading>
@@ -64,13 +62,12 @@ const ForgotPassword = () => {
             <Input
               type="email"
               variant="filled"
-              borderRadius={"15px"}
-              height={"65px"}
+              borderRadius={"12px"}
+              height={"57px"}
               size="lg"
               placeholder="Email Anda"
-              value={formik.values.email}
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              value={formik.values.email}
               name="email"
             />
           </Box>
@@ -81,8 +78,8 @@ const ForgotPassword = () => {
             bg="#1A72DD"
             color={"white"}
             width={"100%"}
-            borderRadius={"15px"}
-            height={"63px"}
+            borderRadius={"12px"}
+            height={"57px"}
             onClick={formik.handleSubmit}
           >
             Kirim
@@ -91,12 +88,11 @@ const ForgotPassword = () => {
         <Text>
           {" "}
           Kembali ke{" "}
-          <Link href="/login-admin" color="#1A72DD">
+          <Link href="/login-cashier" color="#1A72DD">
             Login
           </Link>{" "}
         </Text>
       </VStack>
-      <ToastContainer />
     </>
   );
 };
