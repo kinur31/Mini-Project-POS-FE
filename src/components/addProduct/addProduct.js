@@ -21,6 +21,7 @@ import { Field, Form, Formik, useFormik } from 'formik';
 import { useEffect, useState, useRef } from "react";
 import * as Yup from "yup";
 import {useDropzone} from 'react-dropzone';
+import { IconCloudUpload } from '@tabler/icons-react';
 
 const productSchema = Yup.object().shape({
   product_name: Yup.string().required("Product name is required"),
@@ -52,8 +53,9 @@ const AddProduct = () => {
 
   const formProduct = async (product_name, product_category_id, price, stock) => {
     try {
+      const uppercaseInput = product_name.toUpperCase();
       let formData = new FormData();
-      formData.append("product_name", product_name);
+      formData.append("product_name", uppercaseInput);
       formData.append("product_category_id", product_category_id);
       formData.append("price", price);
       formData.append("stock", stock);
@@ -62,9 +64,23 @@ const AddProduct = () => {
         formData.append("image", file);
       });
       await axios.post("http://localhost:8080/product/add-product", formData);
-      alert("Success");
+      toast({
+        position: "top",
+        title: "Add Product",
+        description: "Success...",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
     } catch (err) {
-      alert("Error");
+      toast({
+        position: "top",
+        title: "Add Product",
+        description: "Error...",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
 
@@ -102,35 +118,6 @@ const AddProduct = () => {
       
     },
   });
-
-  const handleAddProduct = () => {
-    // Lakukan sesuatu dengan data produk, seperti mengirim ke server
-    toast({
-      position: "top",
-      title: "Add Product",
-      description:  "Success...",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-    });
-
-    setProduct(null);
-    setprice(null);
-    setProductImage(null);
-    // setProductCategory("");
-  };
-
-//   const handleDeleteProduct = () => {
-//     // Lakukan sesuatu dengan penghapusan produk, seperti mengirim ke server
-//     toast({
-//       position: "top",
-//       title: "Delete Product",
-//       description: "Delected product success",
-//       status: "warning",
-//       duration: 3000,
-//       isClosable: true,
-//     });
-//   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -225,12 +212,13 @@ const AddProduct = () => {
               <FormLabel>Upload Image :</FormLabel>
               <Box>
               <InputGroup>
-              <Stack border="1px solid white" justifyContent="center" gap={0} rounded=".5em" overflow="hidden" >
-                    <VStack h="13em"  hidden={productImage? true : false}  {...getRootProps()} className="dropzone"  alignItems='center' justifyContent='center'>
+              <Stack border="2px solid grey" justifyContent="center" gap={0} rounded=".5em" overflow="hidden" >
+                    <VStack p="40px" h="13em"  hidden={productImage? true : false}  {...getRootProps()} className="dropzone"  alignItems='center' justifyContent='center'>
                       <Input {...getInputProps()} 
                           ref={inputImage}/>
                       {/* <Image src={Upload} /> */}
-                      <Text>Drag 'n' drop some files here, or click to select files</Text>
+                      <IconCloudUpload cursor= "pointer" size="30px" />
+                      <Text cursor="pointer" textAlign="center" w="200px" fontSize="small" >Drag 'n' drop some files here, or click to select files</Text>
                     </VStack>
                     {productImage && (
                       <Stack className="dropzone">
@@ -256,7 +244,7 @@ const AddProduct = () => {
               </Box>
             </FormControl>
 
-            <Button type="submit" mt={4} bgColor="#1A72DD" textColor="white" colorScheme="#1A72DD" onClick={handleAddProduct}>
+            <Button type="submit" mt={4} bgColor="#1A72DD" textColor="white" colorScheme="#1A72DD">
         Add Product
       </Button>
 
