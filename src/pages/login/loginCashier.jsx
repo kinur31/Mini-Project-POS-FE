@@ -29,6 +29,7 @@ const LoginCashier = () => {
     },
     onSubmit: async (values) => {
       dispatch(login(values.username, values.password));
+
       // navigate("/");
     },
   });

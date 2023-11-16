@@ -33,7 +33,6 @@ export const AuthReducer = createSlice({
     },
     loginSuccess: (state, action) => {
       state.isLogin = true;
-      toast.success("Logged in");
     },
     logoutSuccess: (state, action) => {
       state.isLogin = false;
@@ -56,6 +55,7 @@ export const login = (username, password) => {
       localStorage.setItem("token", res?.data?.data?.token);
       dispatch(setUser(res?.data?.data?.user));
       dispatch(loginSuccess());
+      toast.success("Logged in");
     } catch (err) {
       alert(err?.response?.data);
     }
