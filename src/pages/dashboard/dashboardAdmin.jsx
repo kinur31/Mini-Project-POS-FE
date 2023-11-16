@@ -11,6 +11,7 @@ import {
   TableContainer,
   Button,
 } from "@chakra-ui/react";
+import HeadManageCashier from "./headManage1";
 // import { IoIosArrowBack } from "react-icons/io";
 // import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
@@ -42,6 +43,7 @@ const DashboardAdmin = () => {
   return (
     <>
       <VStack margin={"5%"}>
+        <HeadManageCashier width={"full"} />
         <TableContainer width={"full"}>
           <Table variant="striped" colorScheme="teal">
             <Thead>
