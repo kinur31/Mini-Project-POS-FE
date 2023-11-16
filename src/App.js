@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import LoginScreen from "./pages/login/loginScreen";
 import LoginCashier from "./pages/login/loginCashier";
-import ForgotPassword from "./pages/forgotPassword.jsx/forgotPassword";
-import CekEmail from "./pages/forgotPassword.jsx/cekEmail";
+import ForgotPassword from "./pages/forgotPassword/forgotPassword";
+import CekEmail from "./pages/forgotPassword/cekEmail";
 function App() {
   return (
     <>
