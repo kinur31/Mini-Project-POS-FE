@@ -82,6 +82,23 @@ export const keepLogin = () => {
   };
 };
 
+export const forgotPassword = (email, password) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post("http://localhost:8080/auth/login", {
+        email,
+        password,
+      });
+
+      localStorage.setItem("token", res?.data?.data?.token);
+      dispatch(setUser(res?.data?.data?.user));
+      dispatch(loginSuccess());
+    } catch (err) {
+      alert(err?.response?.data);
+    }
+  };
+};
+
 export const { loginSuccess, logoutSuccess, setUser, keepLoginSuccess } =
   AuthReducer.actions;
 
