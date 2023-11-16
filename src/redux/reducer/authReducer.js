@@ -42,11 +42,11 @@ export const AuthReducer = createSlice({
   },
 });
 
-export const login = (email, password) => {
+export const login = (username, password) => {
   return async (dispatch) => {
     try {
       const res = await axios.post("http://localhost:8080/auth/login", {
-        email,
+        username,
         password,
       });
 
