@@ -222,7 +222,7 @@ const AddProduct = () => {
             <FormControl
               isInvalid={formik.touched.productImage && formik.errors.productImage}
             >
-              <FormLabel>Upload Image</FormLabel>
+              <FormLabel>Upload Image :</FormLabel>
               <Box>
               <InputGroup>
               <Stack border="1px solid white" justifyContent="center" gap={0} rounded=".5em" overflow="hidden" >
@@ -256,7 +256,7 @@ const AddProduct = () => {
               </Box>
             </FormControl>
 
-            <Button type="submit" mt={4} colorScheme="teal" onClick={handleAddProduct}>
+            <Button type="submit" mt={4} bgColor="#1A72DD" textColor="white" colorScheme="#1A72DD" onClick={handleAddProduct}>
         Add Product
       </Button>
 
