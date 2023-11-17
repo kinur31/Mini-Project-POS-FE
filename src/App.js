@@ -12,7 +12,7 @@ function App() {
         <Route path="/" element={<LoginScreen />} />
         <Route path="/login-admin" element={<LoginAdmin />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/auth/reset-password" element={<ResetPassword />} />
         <Route path="/cek-email" element={<CekEmail />} />
         <Route path="/dashboard-admin" element={<LoginAdmin />} />
       </Routes>
