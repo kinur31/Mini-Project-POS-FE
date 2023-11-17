@@ -1,23 +1,18 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
-import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { Switch, Button } from "@chakra-ui/react";
-import HeadManageProduct from "./headManage";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Sidebar1 from "../sidebar/sidebar1";
 
-const BodyManageProduct = () => {
+const BodyDashboardAdmin = () => {
   // const [selectAll, setSelectAll] = useState(false);
   const [product, setProduct] = useState([]);
   const [status, setStatus] = useState(true);
@@ -136,4 +131,4 @@ const BodyManageProduct = () => {
   );
 };
 
-export default BodyManageProduct;
+export default BodyDashboardAdmin;
