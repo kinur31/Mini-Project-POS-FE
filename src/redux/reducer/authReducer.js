@@ -93,6 +93,30 @@ export const forgotPassword = (email) => {
   };
 };
 
+export const resetPassword = (password) => {
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  const token = getQueryParam("token");
+
+  return async () => {
+    try {
+      await axios.patch(
+        `http://localhost:8080/auth/reset-password?token=${encodeURIComponent(
+          token
+        )}`,
+        {
+          password,
+        }
+      );
+    } catch (err) {
+      alert(err?.response?.data);
+    }
+  };
+};
+
 export const { loginSuccess, logoutSuccess, setUser, keepLoginSuccess } =
   AuthReducer.actions;
 
