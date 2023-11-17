@@ -14,7 +14,7 @@ const HeadDashboarAdmin = () => {
           fontWeight="700"
           fontSize="20px"
         >
-          Manage Product
+          User Management
         </Text>
 
         <Box display="flex" alignItems="center" gap="18px">
@@ -29,7 +29,7 @@ const HeadDashboarAdmin = () => {
             <Input
               border="none"
               _focus={{ border: "none", boxShadow: "none" }}
-              placeholder="Search Product here...."
+              placeholder="Search Cashier here...."
             />
             <IconSearch color="#838383" />
           </Box>
@@ -43,7 +43,7 @@ const HeadDashboarAdmin = () => {
               alignItems="center"
             >
               {" "}
-              <IconPlus /> <Text>Create Product</Text>{" "}
+              <IconPlus /> <Text>Create Cashier</Text>{" "}
             </Button>
           </Link>
         </Box>

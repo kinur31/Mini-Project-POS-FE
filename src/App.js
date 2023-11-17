@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/dashboard-admin" element={<DashboardAdmin />} />
+        <Route path="/user-management" element={<DashboardAdmin />} />
       </Routes>
     </>
   );

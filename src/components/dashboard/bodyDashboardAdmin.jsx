@@ -57,17 +57,11 @@ const BodyDashboardAdmin = () => {
         >
           <Thead bgColor="#1A72DD" h="40px">
             <Tr>
-              <Th color="#ffffff">Product Name</Th>
-              <Th color="#ffffff">Product Image</Th>
-              <Th color="#ffffff">Price</Th>
-              <Th color="#ffffff">Stock</Th>
-              <Th color="#ffffff">Category</Th>
-              <Th color="#ffffff" textAlign="center">
-                Status
-              </Th>
-              <Th color="#ffffff" textAlign="center">
-                Action
-              </Th>
+              <Th color="#ffffff">Profile Picture</Th>
+              <Th color="#ffffff">Full Name</Th>
+              <Th color="#ffffff">Email</Th>
+              <Th color="#ffffff">Status</Th>
+              <Th color="#ffffff">Action</Th>
             </Tr>
           </Thead>
           <Tbody
