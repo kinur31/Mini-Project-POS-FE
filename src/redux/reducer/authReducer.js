@@ -84,7 +84,7 @@ export const keepLogin = () => {
 export const forgotPassword = (email) => {
   return async () => {
     try {
-      await axios.post("http://localhost:8080/auth/forgot-password", {
+      await axios.patch("http://localhost:8080/auth/forgot-password", {
         email,
       });
     } catch (err) {
