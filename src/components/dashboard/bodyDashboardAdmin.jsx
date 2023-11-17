@@ -14,16 +14,15 @@ import { useEffect, useState } from "react";
 
 const BodyDashboardAdmin = () => {
   // const [selectAll, setSelectAll] = useState(false);
-  const [product, setProduct] = useState([]);
+  const [cashier, setCashier] = useState([]);
   const [status, setStatus] = useState(true);
-  const fetchProduct = async () => {
+  const fetchCashier = async () => {
     try {
       const response = await axios.get(
         "http://localhost:8080/product/list-product"
       );
-      setProduct(response.data.data);
+      setCashier(response.data.data);
       console.log(response.data.data);
-      // console.log(response.data.data[0].eventcategory.categoryName);
     } catch (err) {
       console.log(err);
     }
@@ -34,16 +33,15 @@ const BodyDashboardAdmin = () => {
       const response = await axios.update(
         "http://localhost:8080/product/deactive"
       );
-      setProduct(response.data.data);
+      setStatus(response.data.data);
       console.log(response.data.data);
-      // console.log(response.data.data[0].eventcategory.categoryName);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    fetchProduct();
+    fetchCashier();
   }, []);
 
   return (
@@ -71,21 +69,19 @@ const BodyDashboardAdmin = () => {
             fontSize="12px"
             textAlign="center"
           >
-            {product.map((item, index) => (
+            {cashier.map((item, index) => (
               <Tr key={index}>
-                <Td>{item.product_name}</Td>
                 <Td>
                   <Image
                     // height="120px"
                     width="80px"
-                    src={`${process.env.REACT_APP_IMAGE_URL}/products/${item?.image}`}
+                    src={`${process.env.REACT_APP_IMAGE_URL}/cashier/${item?.avatar}`}
                     alt="product pict"
                   />
                 </Td>
-                {/* <Td><Box bgColor='#D1D1D1' w='100px' h='60px'/></Td> */}
-                <Td>{item.price}</Td>
-                <Td>{item.stock}</Td>
-                <Td>{item.productCategory?.category_name}</Td>
+                <Td>{item.fullname}</Td>
+                <Td>{item.email}</Td>
+                <Td>{item.status}</Td>
                 {/* <Td>status: {item.status_product === true ? 1 : 0}</Td> */}
                 <Td textAlign="center">
                   <Switch
