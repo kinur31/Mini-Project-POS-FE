@@ -1,19 +1,37 @@
-import { Box, VStack, Heading, Button, Text } from "@chakra-ui/react";
+import {
+  Box,
+  VStack,
+  Heading,
+  Input,
+  Button,
+  Text,
+  Link,
+} from "@chakra-ui/react";
 import { AiOutlineDingtalk } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
+import { forgotPassword } from "../../redux/reducer/authReducer";
+import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleNavigate = () => {
-    navigate("/login-cashier");
-  };
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    onSubmit: async (values) => {
+      dispatch(forgotPassword(values.email));
+      navigate("/cek-email");
+    },
+  });
 
   return (
     <>
       <VStack margin={"5%"}>
-        <Box className="title-tab" width={"40vw"} mt={"13%"}>
+        <Box className="title-tab" width={"40vw"} mt={"7%"}>
           <VStack>
             <Box
               bg={"#1A72DD"}
@@ -32,14 +50,43 @@ const ResetPassword = () => {
           </VStack>
         </Box>
         <Box mt={"4%"}>
-          <Heading textAlign={"center"} fontSize={"33px"}>
-            Silahkan cek email anda
+          <Heading textAlign={"center"} fontSize={"35px"}>
+            Kata sandi baru
           </Heading>
           <Text textAlign={"center"} fontSize={"18px"} width={"70vw"} mt={"5%"}>
-            Tautan untuk membuat kata sandi baru telah terkirim
+            Silahkan masukan kata sandi baru anda
           </Text>
         </Box>
-        <Box mt={"1.5vh"} width={"full"}></Box>
+        <Box mt={"1.5vh"} width={"full"}>
+          <Box>
+            <Input
+              type="email"
+              variant="filled"
+              borderRadius={"12px"}
+              height={"57px"}
+              size="lg"
+              placeholder="Kata sandi baru"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              name="email"
+            />
+          </Box>
+        </Box>
+        <Box mt={"1.5vh"} width={"full"}>
+          <Box>
+            <Input
+              type="email"
+              variant="filled"
+              borderRadius={"12px"}
+              height={"57px"}
+              size="lg"
+              placeholder="Konfirmasi kata sandi baru"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+              name="email"
+            />
+          </Box>
+        </Box>
         <Box width={"full"} mt={"1vh"}>
           <Button
             type="submit"
@@ -48,11 +95,18 @@ const ResetPassword = () => {
             width={"100%"}
             borderRadius={"12px"}
             height={"57px"}
-            onClick={handleNavigate}
+            onClick={formik.handleSubmit}
           >
-            Kembali ke Login
+            Ganti
           </Button>
         </Box>
+        <Text>
+          {" "}
+          Kembali ke{" "}
+          <Link href="/login-cashier" color="#1A72DD">
+            Login
+          </Link>{" "}
+        </Text>
       </VStack>
     </>
   );
