@@ -58,7 +58,6 @@ const Report = () => {
     },
   };
 
-  // Create an array of series objects
   const series = [
     {
       name: 'Total Sales',
