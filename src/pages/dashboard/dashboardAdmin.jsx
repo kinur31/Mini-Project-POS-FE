@@ -1,11 +1,18 @@
-import { Box, Text } from "@chakra-ui/react";
+import HeadManageProduct from "../../components/manageProduct/headManage";
+import BodyManageProduct from "../../components/manageProduct/manageProduct";
+import Sidebar1 from "../../components/sidebar/sidebar1";
+import { Flex, Stack } from "@chakra-ui/react";
 
-const DashboardAdmin = () => {
+const Products = () => {
   return (
-    <Box>
-      <Text>halo</Text>
-    </Box>
+    <Flex justifyContent="space-between">
+      <Sidebar1 />
+      <Stack gap={0} w={"full"}>
+        <HeadManageProduct />
+        <BodyManageProduct />
+      </Stack>
+    </Flex>
   );
 };
 
-export default DashboardAdmin;
+export default Products;
