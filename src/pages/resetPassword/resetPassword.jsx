@@ -11,7 +11,7 @@ import { AiOutlineDingtalk } from "react-icons/ai";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import { forgotPassword } from "../../redux/reducer/authReducer";
+import { resetPassword } from "../../redux/reducer/authReducer";
 import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {
@@ -20,10 +20,10 @@ const ResetPassword = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
+      password: "",
     },
     onSubmit: async (values) => {
-      dispatch(forgotPassword(values.email));
+      dispatch(resetPassword(values.email));
       navigate("/cek-email");
     },
   });

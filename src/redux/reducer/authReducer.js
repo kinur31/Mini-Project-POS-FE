@@ -93,6 +93,18 @@ export const forgotPassword = (email) => {
   };
 };
 
+export const resetPassword = (password) => {
+  return async () => {
+    try {
+      await axios.post("http://localhost:8080/auth/reset-password", {
+        password,
+      });
+    } catch (err) {
+      alert(err?.response?.data);
+    }
+  };
+};
+
 export const { loginSuccess, logoutSuccess, setUser, keepLoginSuccess } =
   AuthReducer.actions;
 
