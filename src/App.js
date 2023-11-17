@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home";
+import ResetPassword from "./pages/resetPassword/resetPassword";
 
 function App() {
-   return (
+  return (
     <>
       <Routes>
-        <Route path="/" element={<Home/>}/>
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </>
   );
