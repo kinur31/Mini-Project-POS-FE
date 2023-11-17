@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
 
-const DashboardAdmin = () => {
+const BodyDashboardAdmin = () => {
   return (
     <Box>
       <Text>halo</Text>
@@ -8,4 +8,4 @@ const DashboardAdmin = () => {
   );
 };
 
-export default DashboardAdmin;
+export default BodyDashboardAdmin;
