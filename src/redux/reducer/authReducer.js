@@ -96,7 +96,7 @@ export const forgotPassword = (email) => {
 export const resetPassword = (password) => {
   return async () => {
     try {
-      await axios.post("http://localhost:8080/auth/reset-password", {
+      await axios.post("http://localhost:8080/auth/reset-password:token", {
         password,
       });
     } catch (err) {

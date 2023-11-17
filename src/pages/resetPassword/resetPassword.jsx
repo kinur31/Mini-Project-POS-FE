@@ -23,7 +23,7 @@ const ResetPassword = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      dispatch(resetPassword(values.email));
+      dispatch(resetPassword(values.password));
       navigate("/cek-email");
     },
   });
