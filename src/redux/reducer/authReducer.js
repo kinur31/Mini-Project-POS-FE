@@ -84,9 +84,33 @@ export const keepLogin = () => {
 export const forgotPassword = (email) => {
   return async () => {
     try {
-      await axios.post("http://localhost:8080/auth/forgot-password", {
+      await axios.patch("http://localhost:8080/auth/forgot-password", {
         email,
       });
+    } catch (err) {
+      alert(err?.response?.data);
+    }
+  };
+};
+
+export const resetPassword = (password) => {
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  const token = getQueryParam("token");
+
+  return async () => {
+    try {
+      await axios.patch(
+        `http://localhost:8080/auth/reset-password?token=${encodeURIComponent(
+          token
+        )}`,
+        {
+          password,
+        }
+      );
     } catch (err) {
       alert(err?.response?.data);
     }
