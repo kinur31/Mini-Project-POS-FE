@@ -10,13 +10,7 @@ import Products from "./pages/manageProductPage/manageProducts";
 import Category from "./pages/manageCategoryPage/manageCategory";
 import AddCategory from "./components/addCategory/addCategory";
 import ModalCategory from "./components/modal/modalCategory";
-
-
-
-
-
-
-
+import PageReport from "./pages/report";
 
 function App() {
    return (
@@ -32,6 +26,7 @@ function App() {
         <Route path="/category" element={<Category />}/>
         <Route path="/add-category" element={<AddCategory />}/>
         <Route path="/modal-category" element={<ModalCategory />}/>
+        <Route path="/report" element={<PageReport/>}/>
       </Routes>
     </>
   );
