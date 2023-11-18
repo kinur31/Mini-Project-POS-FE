@@ -318,7 +318,7 @@ const ModalProduct = () => {
               </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button type="submit" colorScheme="blue" mr={3}>
+              <Button type="submit" colorScheme="1A72DD" mr={3}>
                 Add Product
               </Button>
               <Button onClick={onClose}>Cancel</Button>

@@ -90,7 +90,9 @@ const ModalProduct = () => {
       <Modal onClose={onClose} isOpen={isOpen} size="custom" isCentered>
         <ModalOverlay />
         <ModalContent w="950px" h="600px">
-          <ModalHeader fontWeight={"bold"}>Edit Product</ModalHeader>
+          <Box bgColor="#1A72DD">
+          <ModalHeader color="white" variant="solid">Edit Product</ModalHeader>
+          </Box>
           <ModalCloseButton />
           <ModalBody>
             <Box
@@ -172,17 +174,14 @@ const ModalProduct = () => {
           </ModalBody>
           <ModalFooter display="flex" gap="20px">
             <Button
+            type="submit"
+            colorScheme="1A72DD"
               w="80px"
-              variant="outline"
-              color="#1A72DD"
-              border="1px solid #1A72DD"
             >
               Save
             </Button>
             <Button
               w="80px"
-              bgColor="#1A72DD"
-              color="#ffffff"
               onClick={onClose}
             >
               Cancel

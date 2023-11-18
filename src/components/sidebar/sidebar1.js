@@ -6,6 +6,7 @@ import {
   HStack,
   VStack,
   Button,
+  Flex,
 } from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -20,6 +21,8 @@ import {
   IconChartBar,
 } from "@tabler/icons-react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
+import Logo from "../../assets/images/SSR1.png";
+
 
 const Sidebar1 = () => {
   const [activeUser, setActiveUser] = useState("");
@@ -74,15 +77,17 @@ const Sidebar1 = () => {
     <Box display="flex" flexDirection="column" gap="45px">
       <Link to={""}>
         <HStack spacing="0" padding="32px 0 0 24px">
-          <Image src="../../../public/images/logo.png" />
+          <Flex justifyContent="center" gap="10px">
+          <Image borderRadius="30px" w="50px" src={Logo} />
           <Text
             fontFamily="Paytone One"
             fontSize="32px"
             color="#1A72DD"
             fontWeight="400"
           >
-            SSR
+            SRR
           </Text>
+          </Flex>
         </HStack>
       </Link>
       {/* menu list */}

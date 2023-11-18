@@ -19,10 +19,13 @@ import Sidebar1 from "../sidebar/sidebar1";
 import ModalProduct from "../modalEditProduct/editProduct";
 
 const BodyManageProduct = () => {
-  // const [selectAll, setSelectAll] = useState(false);
-  const [product, setProduct] = useState([]);
-  const [status, setStatus] = useState(true);
-  const toast = useToast();
+    const [product, setProduct] = useState([]);
+    const [productById, setProductById] = useState(null);
+    const [productId, setProductId] = useState(null);
+    const [productStatus, setProductStatus] = useState(null);
+    const [productDelete, setProductDelete] = useState(null);
+    const toast = useToast();
+
   const fetchProduct = async () => {
     try {
       const response = await axios.get(
@@ -35,17 +38,20 @@ const BodyManageProduct = () => {
     }
   };
 
-  const handleChangeStatus = async () => {
+  const updateProductStatus = async (productId, newStatus) => {
     try {
-      const response = await axios.update(
-        "http://localhost:8080/product/deactive"
-      );
-      setProduct(response.data.data);
-      console.log(response.data.data);
+        const res = await axios.patch(`http://localhost:8080/product/edit/${productId}`, {
+            status_product: newStatus
+        });
+        setProductStatus(res?.data?.data);
+        toast({ title: res?.data?.message, status: 'success', position: 'top', duration: 2000, isClosable: true });
     } catch (err) {
-      console.log(err);
+        toast({ title: err?.response?.data, status: 'error', position: 'top', duration: 2000, isClosable: true });
     }
-  };
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+};
 
   const handleDeleteProduct = async (id) => {
     try {
@@ -73,7 +79,7 @@ const BodyManageProduct = () => {
     }
     setTimeout(() => {
       window.location.reload();
-    }, 3000);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -129,12 +135,7 @@ const BodyManageProduct = () => {
                 <Td fontWeight="bold">{item.productCategory?.category_name}</Td>
                 {/* <Td>status: {item.status_product === true ? 1 : 0}</Td> */}
                 <Td textAlign="center">
-                  <Switch
-                    colorScheme="green"
-                    onClick={handleChangeStatus}
-                    value={status}
-                    isChecked={status === true ? true : false}
-                  />
+                <Switch colorScheme='green' isChecked={item.status_product === true ? true : false} onChange={() => updateProductStatus(item.id, item.status_product === true ? false : true)}/>
                 </Td>
                 <Td textAlign="center">
                   <Box display="flex" justifyContent="center" gap="10px">
