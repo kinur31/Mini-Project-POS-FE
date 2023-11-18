@@ -1,19 +1,12 @@
-import { useDisclosure, Box, Text, Input, Button } from "@chakra-ui/react";
-import { IconSearch, IconPlus } from "@tabler/icons-react";
-// import ModalCreateProduct from '../../modal/createProduct';
-import { Link } from "react-router-dom";
+import { Box, Text, Input } from "@chakra-ui/react";
+import { IconSearch } from "@tabler/icons-react";
+import ModalCreateCashier from "../modalCreateCashier/modalCreateCashier";
 
 const HeadDashboarAdmin = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box padding="10px 20px 10px 20px">
       <Box display="flex" alignItems="center" justifyContent="space-between">
-        <Text
-          color="#1A72DD"
-          //   fontFamily="Nunito"
-          fontWeight="700"
-          fontSize="20px"
-        >
+        <Text color="#1A72DD" fontWeight="700" fontSize="20px">
           User Management
         </Text>
 
@@ -33,19 +26,7 @@ const HeadDashboarAdmin = () => {
             />
             <IconSearch color="#838383" />
           </Box>
-          <Link to={"/add-product"}>
-            <Button
-              bgColor="#1A72DD"
-              color="#ffffff"
-              display="flex"
-              gap="10px"
-              onClick={onOpen}
-              alignItems="center"
-            >
-              {" "}
-              <IconPlus /> <Text>Create Cashier</Text>{" "}
-            </Button>
-          </Link>
+          <ModalCreateCashier />
         </Box>
       </Box>
     </Box>

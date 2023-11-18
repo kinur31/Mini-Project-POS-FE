@@ -19,7 +19,7 @@ const BodyDashboardAdmin = () => {
   const fetchCashier = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/product/list-product"
+        "http://localhost:8080/user/findCashier"
       );
       setCashier(response.data.data);
       console.log(response.data.data);
@@ -31,7 +31,7 @@ const BodyDashboardAdmin = () => {
   const handleChangeStatus = async () => {
     try {
       const response = await axios.update(
-        "http://localhost:8080/product/deactive"
+        "http://localhost:8080/user/deactive/:id"
       );
       setStatus(response.data.data);
       console.log(response.data.data);
@@ -55,11 +55,21 @@ const BodyDashboardAdmin = () => {
         >
           <Thead bgColor="#1A72DD" h="40px">
             <Tr>
-              <Th color="#ffffff">Profile Picture</Th>
-              <Th color="#ffffff">Full Name</Th>
-              <Th color="#ffffff">Email</Th>
-              <Th color="#ffffff">Status</Th>
-              <Th color="#ffffff">Action</Th>
+              <Th fontSize={"sm"} color="#ffffff">
+                Profile Picture
+              </Th>
+              <Th fontSize={"sm"} color="#ffffff">
+                Full Name
+              </Th>
+              <Th fontSize={"sm"} color="#ffffff">
+                Email
+              </Th>
+              <Th fontSize={"sm"} color="#ffffff">
+                Status
+              </Th>
+              <Th fontSize={"sm"} color="#ffffff">
+                Action
+              </Th>
             </Tr>
           </Thead>
           <Tbody
@@ -73,21 +83,18 @@ const BodyDashboardAdmin = () => {
               <Tr key={index}>
                 <Td>
                   <Image
-                    // height="120px"
                     width="80px"
                     src={`${process.env.REACT_APP_IMAGE_URL}/cashier/${item?.avatar}`}
                     alt="product pict"
                   />
                 </Td>
-                <Td>{item.fullname}</Td>
-                <Td>{item.email}</Td>
-                <Td>{item.status}</Td>
-                {/* <Td>status: {item.status_product === true ? 1 : 0}</Td> */}
+                <Td fontSize={"md"}>{item.fullname}</Td>
+                <Td fontSize={"md"}>{item.email}</Td>
                 <Td textAlign="center">
                   <Switch
                     colorScheme="green"
                     onClick={handleChangeStatus}
-                    value={status}
+                    value={item.status}
                     isChecked={status === true ? true : false}
                   />
                 </Td>
