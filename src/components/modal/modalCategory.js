@@ -16,6 +16,7 @@ import {
   Text,
   InputGroup,
   FormErrorMessage,
+  Box,
 } from "@chakra-ui/react";
 import { IconSearch, IconPlus } from "@tabler/icons-react";
 import axios  from "axios";
@@ -49,6 +50,7 @@ const ModalCategory = () => {
         duration: 3000,
         isClosable: true,
       });
+
     } catch (err) {
       toast({
         position: "top",
@@ -59,6 +61,9 @@ const ModalCategory = () => {
         isClosable: true,
       });
     }
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   const formik = useFormik({
@@ -95,8 +100,8 @@ const ModalCategory = () => {
         
         <ModalContent>
         <form onSubmit={formik.handleSubmit}>
-
-          <ModalHeader variant="solid">ADD CATEGORY PRODUCT</ModalHeader>
+<Box bgColor="#1A72DD">
+          <ModalHeader color="white" variant="solid">ADD CATEGORY PRODUCT</ModalHeader></Box>
           <ModalCloseButton />
           <ModalBody pb={6}>
           <FormControl

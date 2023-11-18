@@ -40,34 +40,7 @@ const HeadCategory = () => {
             />
             <IconSearch color="#838383" />
           </Box>
-          {/* <Link to={"/modal-category"}> */}
-         
-          {/* <Button
-            // bgColor="#1A72DD"
-            // color="#ffffff"
-            display="flex"
-            gap="10px"
-            onClick={onOpen}
-            alignItems="center"
-          > */}
-          <IconButton onclick={onOpen} isOpen={isOpen} icon={<IconPlus/>} > 
-            <Text>Create Category</Text>
-          </IconButton>
-          <Button
-            bgColor="#1A72DD"
-            color="#ffffff"
-            display="flex"
-            gap="10px"
-            onclick={onOpen} isOpen={isOpen}
-            alignItems="center"
-          >
-            {" "}
-            <IconPlus /> <Text>Create Product</Text>{" "}
-          </Button>
           <ModalCategory  />
-            {/* {" "} */}
-          {/* </Button> */}
-          {/* </Link> */}
         </Box>
       </Box>
     </Box>

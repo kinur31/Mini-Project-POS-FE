@@ -2,6 +2,7 @@ import { useDisclosure, Box, Text, Input, Button } from "@chakra-ui/react";
 import { IconSearch, IconPlus } from "@tabler/icons-react";
 // import ModalCreateProduct from '../../modal/createProduct';
 import { Link } from "react-router-dom";
+import ModalProduct from "../modal/modalProduct";
 
 const HeadManageProduct = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -34,7 +35,8 @@ const HeadManageProduct = () => {
             />
             <IconSearch color="#838383" />
           </Box>
-          <Link to={"/add-product"}>
+          <ModalProduct />
+          {/* <Link to={"/add-product"}>
           <Button
             bgColor="#1A72DD"
             color="#ffffff"
@@ -46,7 +48,7 @@ const HeadManageProduct = () => {
             {" "}
             <IconPlus /> <Text>Create Product</Text>{" "}
           </Button>
-          </Link>
+          </Link> */}
         </Box>
       </Box>
     </Box>

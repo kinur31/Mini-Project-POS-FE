@@ -244,7 +244,7 @@ const Sidebar1 = () => {
                 </Text>
               </Box>
             </Link>
-            <Link to={"/manage-product"}>
+            <Link to={"/category"}>
               <Box
                 style={{
                   borderBottom:
