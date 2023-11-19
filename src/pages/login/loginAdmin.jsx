@@ -26,7 +26,7 @@ const LoginAdmin = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -36,7 +36,7 @@ const LoginAdmin = () => {
     onSubmit: async (values) => {
       dispatch(login(values.username, values.password));
       toast.success("Logged in");
-      navigate("/admin");
+      // navigate("/admin");
     },
   });
 
