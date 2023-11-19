@@ -14,13 +14,20 @@ import {
   Text,
   FormErrorMessage,
   useDisclosure,
+<<<<<<< Updated upstream
   Toast,
+=======
+  useToast,
+>>>>>>> Stashed changes
 } from "@chakra-ui/react";
 import { IconPlus } from "@tabler/icons-react";
 import * as Yup from "yup";
 import axios from "axios";
 import { useFormik } from "formik";
+<<<<<<< Updated upstream
 // import { useToast } from "react-toastify";
+=======
+>>>>>>> Stashed changes
 
 const CashierScheme = Yup.object().shape({
   fullname: Yup.string()
@@ -49,7 +56,11 @@ const CashierScheme = Yup.object().shape({
 
 function ModalCreateCashier() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+<<<<<<< Updated upstream
   const toast = Toast();
+=======
+  const toast = useToast();
+>>>>>>> Stashed changes
 
   const token = localStorage.getItem("token");
 
