@@ -1,6 +1,5 @@
-import { Flex, Stack } from "@chakra-ui/react";
-import BodyDashboardAdmin from "../../components/dashboard/bodyDashboardAdmin";
-import HeadDashboarAdmin from "../../components/dashboard/headDasboardAdmin";
+import { Flex, Stack, Text } from "@chakra-ui/react";
+import HeadDashboardAdmin from "../../components/dashboard/headDasboardAdmin";
 import SideBar from "../../components/sidebar/sidebar";
 
 const DashboardAdmin = () => {
@@ -8,8 +7,10 @@ const DashboardAdmin = () => {
     <Flex justifyContent="space-between">
       <SideBar />
       <Stack gap={0} w={"full"}>
-        <HeadDashboarAdmin />
-        <BodyDashboardAdmin />
+        <Text>Test</Text>
+        <HeadDashboardAdmin />
+
+        {/* <BodyDashboardAdmin /> */}
       </Stack>
     </Flex>
   );

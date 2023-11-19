@@ -8,18 +8,19 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
-  useDisclosure,
   FormControl,
   FormLabel,
   Input,
   Text,
   FormErrorMessage,
+  useDisclosure,
+  Toast,
 } from "@chakra-ui/react";
 import { IconPlus } from "@tabler/icons-react";
 import * as Yup from "yup";
 import axios from "axios";
 import { useFormik } from "formik";
-import { useToast } from "react-toastify";
+// import { useToast } from "react-toastify";
 
 const CashierScheme = Yup.object().shape({
   fullname: Yup.string()
@@ -48,7 +49,7 @@ const CashierScheme = Yup.object().shape({
 
 function ModalCreateCashier() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast();
+  const toast = Toast();
 
   const token = localStorage.getItem("token");
 

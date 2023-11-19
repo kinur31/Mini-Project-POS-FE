@@ -2,7 +2,7 @@ import { Box, Text, Input } from "@chakra-ui/react";
 import { IconSearch } from "@tabler/icons-react";
 import ModalCreateCashier from "../modalCreateCashier/modalCreateCashier";
 
-const HeadDashboarAdmin = () => {
+const HeadDashboardAdmin = () => {
   return (
     <Box padding="10px 20px 10px 20px">
       <Box display="flex" alignItems="center" justifyContent="space-between">
@@ -33,4 +33,4 @@ const HeadDashboarAdmin = () => {
   );
 };
 
-export default HeadDashboarAdmin;
+export default HeadDashboardAdmin;
