@@ -13,9 +13,11 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutSuccess } from "../../redux/reducer/authReducer";
 import { BiLogOut } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const { user } = useSelector((state) => state.AuthReducer);
+  const { user, isLogin } = useSelector((state) => state.AuthReducer);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [show, setShow] = React.useState(false);
 
@@ -27,6 +29,7 @@ const Profile = () => {
 
   return (
     <Box>
+      {isLogin ? user?.fullname : "Belum Login"}
       <Box position="relative">
         <Avatar size="md" src={profile} onClick={updateState} />
         {show && (
@@ -57,7 +60,7 @@ const Profile = () => {
                 />
                 <VStack spacing={"0"}>
                   <Text textColor={"white"} fontWeight="bold">
-                    Halo saya {user.fullname} 👋
+                    Halo saya {isLogin && user?.fullname} 👋
                   </Text>
                   <Text
                     textColor={"white"}

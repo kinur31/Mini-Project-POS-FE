@@ -4,10 +4,11 @@ import axios from "axios";
 const initialState = {
   user: {
     id: null,
-    email: "",
-    username: "",
     roleId: null,
-    point: null,
+    fullname: "",
+    address: "",
+    username: "",
+    email: "",
     avatar: "",
   },
   isLogin: false,
@@ -18,12 +19,15 @@ export const AuthReducer = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      const { id, fullname, address, email, avatar } = action.payload;
+      const { id, roleId, fullname, address, username, email, avatar } =
+        action.payload;
 
       state.user = {
         id,
+        roleId,
         fullname,
         address,
+        username,
         email,
         avatar,
       };
@@ -36,11 +40,12 @@ export const AuthReducer = createSlice({
       localStorage.removeItem("token");
     },
     keepLoginSuccess: (state) => {
-      state.isLogin = true;
+      if (!state.isLogin) {
+        state.isLogin = true;
+      }
     },
   },
 });
-
 export const login = (username, password) => {
   return async (dispatch) => {
     try {
@@ -69,7 +74,6 @@ export const keepLogin = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-
         dispatch(setUser(res?.data?.data));
         dispatch(keepLoginSuccess());
       }
