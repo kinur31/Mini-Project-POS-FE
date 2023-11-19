@@ -82,11 +82,15 @@ const BodyDashboardAdmin = () => {
             {cashier.map((item, index) => (
               <Tr key={index}>
                 <Td>
-                  <Image
-                    width="80px"
-                    src={`${process.env.REACT_APP_IMAGE_URL}/cashier/${item?.avatar}`}
-                    alt="product pict"
-                  />
+                  {item?.avatar !== null ? (
+                    <Image
+                      width="80px"
+                      src={`${process.env.REACT_APP_IMAGE_URL}/cashier/${item?.avatar}`}
+                      alt="product pict"
+                    />
+                  ) : (
+                    "The cashier has not uploaded an avatar"
+                  )}
                 </Td>
                 <Td fontSize={"md"}>{item.fullname}</Td>
                 <Td fontSize={"md"}>{item.email}</Td>

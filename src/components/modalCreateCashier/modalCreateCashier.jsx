@@ -14,20 +14,12 @@ import {
   Text,
   FormErrorMessage,
   useDisclosure,
-<<<<<<< Updated upstream
-  Toast,
-=======
   useToast,
->>>>>>> Stashed changes
 } from "@chakra-ui/react";
 import { IconPlus } from "@tabler/icons-react";
 import * as Yup from "yup";
 import axios from "axios";
 import { useFormik } from "formik";
-<<<<<<< Updated upstream
-// import { useToast } from "react-toastify";
-=======
->>>>>>> Stashed changes
 
 const CashierScheme = Yup.object().shape({
   fullname: Yup.string()
@@ -56,18 +48,14 @@ const CashierScheme = Yup.object().shape({
 
 function ModalCreateCashier() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-<<<<<<< Updated upstream
-  const toast = Toast();
-=======
   const toast = useToast();
->>>>>>> Stashed changes
 
   const token = localStorage.getItem("token");
 
   const formRegister = async (fullname, address, email, username, password) => {
     try {
       await axios.post(
-        "http://localhost:8080/user",
+        "http://localhost:8080/user/add-cashier",
         {
           fullname,
           address,
@@ -90,7 +78,9 @@ function ModalCreateCashier() {
         isClosable: true,
       });
       onClose();
+      window.location.reload();
     } catch (err) {
+      console.error("Error in formRegister:", err);
       toast({
         position: "top",
         title: "Cashier Registration",
@@ -112,7 +102,7 @@ function ModalCreateCashier() {
     },
 
     validationSchema: CashierScheme,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       formRegister(
         values.fullname,
         values.address,
@@ -120,7 +110,6 @@ function ModalCreateCashier() {
         values.username,
         values.password
       );
-      resetForm({ values: "" });
     },
   });
 
