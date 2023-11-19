@@ -57,11 +57,11 @@ function ModalCreateCashier() {
       await axios.post(
         "http://localhost:8080/user/add-cashier",
         {
-          fullname,
-          address,
-          email,
-          username,
-          password,
+          fullname: fullname,
+          address: address,
+          email: email,
+          username: username,
+          password: password,
         },
         {
           headers: {
@@ -78,7 +78,6 @@ function ModalCreateCashier() {
         isClosable: true,
       });
       onClose();
-      window.location.reload();
     } catch (err) {
       console.error("Error in formRegister:", err);
       toast({
@@ -90,6 +89,7 @@ function ModalCreateCashier() {
         isClosable: true,
       });
     }
+    // window.location.reload();
   };
 
   const formik = useFormik({
