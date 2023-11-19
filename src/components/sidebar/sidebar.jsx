@@ -1,4 +1,4 @@
-import { Box, Text, Image, HStack } from "@chakra-ui/react";
+import { Box, Text, Image, HStack, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -10,6 +10,7 @@ import {
   IconChartBar,
 } from "@tabler/icons-react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
+import Profile from "../profile/profile";
 
 const SideBar = () => {
   const [activeUser, setActiveUser] = useState("");
@@ -411,7 +412,11 @@ const SideBar = () => {
                   visibility: activeUser === "profile" ? "visible" : "hidden",
                 }}
               />
-              <Box w="30px" h="30px" bgColor="#1A72DD" borderRadius="50%"></Box>
+              <Box>
+                <Flex alignItems="center">
+                  <Profile />
+                </Flex>
+              </Box>
               <Text
                 fontFamily="Nunito"
                 fontSize="16px"

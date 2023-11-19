@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
+    "@reduxjs/toolkit": "^1.9.7",
     "@tabler/icons": "^2.41.0",
     "@tabler/icons-react": "^2.40.0",
     "@testing-library/jest-dom": "^5.17.0",
