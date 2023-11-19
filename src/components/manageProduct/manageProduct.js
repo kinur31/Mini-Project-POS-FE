@@ -1,4 +1,4 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image, useDisclosure } from "@chakra-ui/react";
 import {
   Table,
   Thead,
@@ -18,10 +18,17 @@ import { useEffect, useState } from "react";
 import Sidebar1 from "../sidebar/sidebar1";
 import ModalProduct from "../modalEditProduct/editProduct";
 
+const formatRupiah = (number) => {
+  if (isNaN(number)) {
+    return '';
+  }
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(number);
+};
+
 const BodyManageProduct = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
     const [product, setProduct] = useState([]);
     const [productById, setProductById] = useState(null);
-    const [productId, setProductId] = useState(null);
     const [productStatus, setProductStatus] = useState(null);
     const [productDelete, setProductDelete] = useState(null);
     const toast = useToast();
@@ -56,7 +63,7 @@ const BodyManageProduct = () => {
   const handleDeleteProduct = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8080/product/delete/${id}`
+        `http://localhost:8080/product/ignore/${id}`
       );
 
       toast({
@@ -82,9 +89,14 @@ const BodyManageProduct = () => {
     }, 1000);
   };
 
+  const handleModalClose = () => {
+    onClose();
+    // getProductAll();
+};
+
   useEffect(() => {
     fetchProduct();
-  }, []);
+  }, [product]);
 
   return (
     <>
@@ -97,15 +109,15 @@ const BodyManageProduct = () => {
         >
           <Thead bgColor="#1A72DD" h="40px">
             <Tr>
-              <Th color="#ffffff">Product Name</Th>
-              <Th color="#ffffff">Product Image</Th>
-              <Th color="#ffffff">Price</Th>
-              <Th color="#ffffff">Stock</Th>
-              <Th color="#ffffff">Category</Th>
-              <Th color="#ffffff" textAlign="center">
+              <Th fontSize="medium" color="#ffffff">Product Name</Th>
+              <Th fontSize="medium" color="#ffffff">Product Image</Th>
+              <Th fontSize="medium" color="#ffffff">Price</Th>
+              <Th fontSize="medium" color="#ffffff">Stock</Th>
+              <Th fontSize="medium" color="#ffffff">Category</Th>
+              <Th fontSize="medium" color="#ffffff" textAlign="center">
                 Status
               </Th>
-              <Th color="#ffffff" textAlign="center">
+              <Th fontSize="medium" color="#ffffff" textAlign="center">
                 Action
               </Th>
             </Tr>
@@ -130,16 +142,20 @@ const BodyManageProduct = () => {
                   />
                 </Td>
                 {/* <Td><Box bgColor='#D1D1D1' w='100px' h='60px'/></Td> */}
-                <Td fontWeight="bold">{item.price}</Td>
+                <Td fontWeight="bold">{formatRupiah(item.price)}</Td>
                 <Td fontWeight="bold">{item.stock}</Td>
                 <Td fontWeight="bold">{item.productCategory?.category_name}</Td>
-                {/* <Td>status: {item.status_product === true ? 1 : 0}</Td> */}
                 <Td textAlign="center">
                 <Switch colorScheme='green' isChecked={item.status_product === true ? true : false} onChange={() => updateProductStatus(item.id, item.status_product === true ? false : true)}/>
                 </Td>
                 <Td textAlign="center">
                   <Box display="flex" justifyContent="center" gap="10px">
-                   <ModalProduct /> {/* <Button
+                   {/* <ModalProduct /> */}
+                    
+      <Button size="sm" w="50px" bgColor="#1A72DD" color="#ffffff" onClick={() => { setProductById(item); onOpen(); }}>
+        Edit
+      </Button>{" "}
+                    {/* <Button
                       size="sm"
                       w="50px"
                       bgColor="#1A72DD"
@@ -164,6 +180,7 @@ const BodyManageProduct = () => {
           </Tbody>
         </Table>
       </TableContainer>
+      {isOpen &&<ModalProduct isOpen={isOpen} onClose={handleModalClose} product={product} setProduct={setProduct} productById={productById}/>}
     </>
   );
 };

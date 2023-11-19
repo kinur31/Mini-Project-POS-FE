@@ -4,7 +4,7 @@ import { IconSearch, IconPlus } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import ModalProduct from "../modal/modalProduct";
 
-const HeadManageProduct = () => {
+const HeadManageProduct = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box padding="10px 20px 10px 20px">

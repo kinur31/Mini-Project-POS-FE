@@ -26,7 +26,7 @@ function App() {
       <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/" element={<Home/>}/>
         <Route path="/add-product" element={<AddProductPage />}/>
-        {/* <Route path="/sidebar" element={<Sidebar />}/> */}
+        <Route path="/sidebar" element={<Sidebar />}/>
         <Route path="/sidebars" element={<Sidebar1 />}/>
         <Route path="/manage-product" element={<Products />}/>
         <Route path="/manage-head" element={<HeadManageProduct />}/>

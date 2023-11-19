@@ -22,6 +22,7 @@ import {
 } from "@tabler/icons-react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 import Logo from "../../assets/images/SSR1.png";
+import { FiMenu, FiX } from "react-icons/fi";
 
 
 const Sidebar1 = () => {
@@ -31,6 +32,12 @@ const Sidebar1 = () => {
   const [activeSubProduct, setActiveSubProduct] = useState("product-list");
   const [showReportDropdown, setShowReportDropdown] = useState(false);
   const [activeSubReport, setActiveSubReport] = useState("analytics");
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
 
   const handleUserClick = (user) => {
     setActiveUser(user);
@@ -65,7 +72,7 @@ const Sidebar1 = () => {
     setActiveSubReport(menu);
   };
   return (
-    <Box
+   <Box
     top={0}
     position="sticky"
     h="100vh"
@@ -90,6 +97,10 @@ const Sidebar1 = () => {
           </Flex>
         </HStack>
       </Link>
+      <Box
+        display={isOpen ? "block" : "none"} // Show/hide sidebar content based on isOpen state
+      >
+      </Box>
       {/* menu list */}
       <Box display="flex" flexDirection="column" gap="10px">
         {/* dashboard */}

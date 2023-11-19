@@ -21,6 +21,7 @@ import {
   Stack,
   Box,
   VStack,
+  InputLeftAddon,
 } from "@chakra-ui/react";
 import { IconSearch, IconPlus } from "@tabler/icons-react";
 import axios from "axios";
@@ -76,6 +77,9 @@ const ModalProduct = () => {
       acceptedFiles.forEach((file) => {
         formData.append("image", file);
       });
+      console.log(`Create Data: ${formData}`);
+      console.log([...formData]); 
+
       await axios.post("http://localhost:8080/product/add-product", formData);
       toast({
         position: "top",
@@ -95,9 +99,9 @@ const ModalProduct = () => {
         isClosable: true,
       });
     }
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 1000);
   };
 
   const fetchCategory = async () => {
@@ -116,6 +120,7 @@ const ModalProduct = () => {
   }, []);
 
   const handleReset = () => {
+    setProductImage(null);
     if (inputImage.current) {
       inputImage.current.value = null;
     }
@@ -165,7 +170,7 @@ const ModalProduct = () => {
       >
         <ModalOverlay />
 
-        <ModalContent>
+        <ModalContent maxW="35em">
           <form onSubmit={formik.handleSubmit}>
             <Box bgColor="#1A72DD">
             <ModalHeader color="white" variant="solid">ADD PRODUCT</ModalHeader>
@@ -200,6 +205,7 @@ const ModalProduct = () => {
               >
                 <FormLabel>Selling price :</FormLabel>
                 <InputGroup>
+                <InputLeftAddon bgColor="#EEEDED" children="Rp" />
                   <Input
                     placeholder="Input price"
                     type="number"
@@ -318,7 +324,7 @@ const ModalProduct = () => {
               </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button type="submit" colorScheme="1A72DD" mr={3}>
+              <Button type="submit" colorScheme="blue" mr={3}>
                 Add Product
               </Button>
               <Button onClick={onClose}>Cancel</Button>

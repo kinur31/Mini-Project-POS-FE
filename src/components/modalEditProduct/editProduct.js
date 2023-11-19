@@ -1,6 +1,14 @@
+import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import {
-  useDisclosure,
-  InputLeftElement,
+  Box,
+  Button,
+  Checkbox,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  Text,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -9,188 +17,248 @@ import {
   ModalBody,
   ModalCloseButton,
   useToast,
-} from "@chakra-ui/react";
-import {
-  Box,
-  Button,
-  Input,
   InputGroup,
-  InputLeftAddon,
-  Textarea,
-  Select,
   Stack,
-} from "@chakra-ui/react";
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from "@chakra-ui/react";
-import React, { useRef, useEffect } from "react";
-import { IconCloudUpload} from "@tabler/icons-react";
-
-import axios from "axios";
+  VStack,
+  Image,
+  FormErrorMessage
+} from '@chakra-ui/react';
 import * as Yup from "yup";
-import { useFormik } from "formik";
+import { IconCloudUpload } from "@tabler/icons-react";
+import { useFormik } from 'formik';
+import { useDropzone } from 'react-dropzone';
 
-const categorySchema = Yup.object().shape({
+const productSchema = Yup.object().shape({
   product_name: Yup.string().required("Product name is required"),
+  product_category_id: Yup.string().required("Category product is required"),
+  price: Yup.string().required("Price product is required"),
+  stock: Yup.string().required("Stock product is required"),
 });
 
-const ModalProduct = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
+const ModalProduct = ({ isOpen, onClose, productById }) => {
+  const [productCategory, setProductCategory] = useState([]);
+  const [image, setImage] = useState(productById?.image || null);
+  const [showAlert, setShowAlert] = useState(false);
+
   const toast = useToast();
 
-  const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
-
-  const editProduct = async (product_name) => {
+  const fetchCategory = async () => {
     try {
-      const uppercaseInput = product_name.toUpperCase();
-      let formData = new FormData();
-      formData.append("product_name", uppercaseInput);
-
-      await axios.patch("http://localhost:8080/product/edit/:id", formData);
-      toast({
-        position: "top",
-        title: "Edit Category",
-        description: "Success...",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
+      const response = await axios.get('http://localhost:8080/product/list-category');
+      setProductCategory(response.data.data);
     } catch (err) {
-      toast({
-        position: "top",
-        title: "Edit Category",
-        description: "Error...",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
+      console.error(err);
     }
   };
 
+  useEffect(() => {
+    fetchCategory();
+    if (showAlert) {
+      const timeout = setTimeout(() => {
+        setShowAlert(false);
+        onClose(); 
+      }, 2000); 
+      
+      return () => clearTimeout(timeout);
+    }
+  }, [showAlert, onClose]);
+
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: 'image/*',
+    onDrop: (acceptedFiles) => {
+      if (acceptedFiles.length > 0) {
+        const imageURL = URL.createObjectURL(acceptedFiles[0]);
+        setImage(imageURL);
+        formik.setFieldValue('image', acceptedFiles[0]); 
+      }
+    },
+  });
+
   const formik = useFormik({
     initialValues: {
-      product_name: "",
+      product_name: productById?.product_name || '',
+      product_category_id: productById?.product_category_id || '',
+      price: productById?.price || '',
+      stock: productById?.stock || '',
+      image: productById?.image,
+      status_product: productById?.status_product || false,
     },
-    validationSchema: categorySchema,
-    onSubmit: (values) => {
-      editProduct(values.product_name);
+    validationSchema: productSchema,
+    onSubmit: async (values, { setSubmitting }) => {
+      try {
+        const formData = new FormData();
+        acceptedFiles.forEach((file) => {
+          formData.append("image", file);
+        });
+
+        // Check if a new file is uploaded, if not, use the existing image
+        if (acceptedFiles.length === 0) {
+          formData.delete('image');
+        }
+
+        console.log([...formData]);
+        console.log(acceptedFiles);
+        await axios.patch(`http://localhost:8080/product/edit/${productById.id}`, formData);
+
+        onClose();
+        toast({
+          position: "top",
+          title: 'Product Updated',
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        });
+      } catch (error) {
+        console.error('Error updating product:', error);
+        toast({
+          position: "top",
+          title: 'Error',
+          description: 'Failed to update product.',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
   return (
-    // <Box w="900px">
-    <>
-      <Button size="sm" w="50px" bgColor="#1A72DD" color="#ffffff" onClick={onOpen}>
-        Edit
-      </Button>{" "}
-      <Modal onClose={onClose} isOpen={isOpen} size="custom" isCentered>
-        <ModalOverlay />
-        <ModalContent w="950px" h="600px">
-          <Box bgColor="#1A72DD">
-          <ModalHeader color="white" variant="solid">Edit Product</ModalHeader>
-          </Box>
-          <ModalCloseButton />
-          <ModalBody>
-            <Box
-              display="flex"
-              justifyContent="center"
-              flexDirection="column"
-              gap="20px"
-            >
-              <Box display="flex" w="100%" gap="20px">
-                <Box w="50%" display="flex" flexDirection="column" gap="20px">
-                  <FormControl>
-                    <FormLabel>Product Image :</FormLabel>
-                    <Box
-                      bgColor="#EEEDED"
-                      h="265px"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      borderRadius="10px"
-                    >
-                      <Box
-                        className="dropzone"
-                        color="#ffffff"
-                        display="flex"
-                        alignItems="center"
-                        justifyContent="center"
-                      >
-                        <Input
-                          type="file"
-                          w="100%"
-                          h="100%"
-                          position="absolute"
-                          opacity="0"
-                        />
-                        <IconCloudUpload
-                        cursor="pointer"
-                          color="#838383"
-                          width="130px"
-                          height="80px"
-                        />
-                      </Box>
-                    </Box>
-                  </FormControl>
-                </Box>
-                <Box w="50%" display="flex" flexDirection="column" gap="34px">
-                  <FormControl>
-                    <FormLabel>Product Name :</FormLabel>
+    <Modal isOpen={isOpen} onClose={onClose}>
+    <ModalOverlay />
+    <ModalContent maxW="42em">
+      <ModalHeader>Edit Product</ModalHeader>
+      <ModalCloseButton />
+      <ModalBody  pb={6}>
+        <form onSubmit={formik.handleSubmit}>
+          <Box display='flex' gap='20px'>
+            <Box w='50%'>
+              <FormControl>
+                <FormLabel color="#696666">Product Image:</FormLabel>
+                <Box
+                  bgColor="#EEEDED"
+                  h="265px"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  borderRadius="10px"
+                >
+                  <Box
+                    {...getRootProps()}
+                    className="dropzone"
+                    color="#ffffff"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    w="100%"
+                    h="100%"
+                    position="relative"
+                  >
                     <Input
-                      bgColor="#EEEDED"
-                      placeholder="Product name here..."
+                      {...getInputProps()}
+                      size="xl"
+                      type="file"
+                      w="100%"
+                      h="100%"
+                      position="absolute"
+                      opacity="0"
                     />
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Price :</FormLabel>
-                    <InputGroup>
-                      <InputLeftAddon bgColor="#EEEDED" children="Rp" />
-                      <Input
-                        type="tel"
-                        bgColor="#EEEDED"
-                        placeholder="phone number"
+                    {/* Display the existing image */}
+                    {image && !acceptedFiles.length && (
+                      <Image
+                        src={`${process.env.REACT_APP_IMAGE_URL}/products/${image}`}
+                        alt="Existing Image"
+                        w="100%"
+                        h="100%"
+                        objectFit="cover"
+                        borderRadius="10px"
+                        cursor={'pointer'}
                       />
-                    </InputGroup>
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Stock :</FormLabel>
-                    <Input bgColor="#EEEDED" placeholder="Type stock here..." />
-                  </FormControl>
-                  <FormControl>
-                    <FormLabel>Product Category :</FormLabel>
-                    <Select bgColor="#EEEDED" placeholder="Select option">
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
-                    </Select>
-                  </FormControl>
+                    )}
+                    {/* Display the newly selected image */}
+                    {acceptedFiles.length > 0 && (
+                      <Image
+                        src={image}
+                        alt="Selected Image"
+                        w="100%"
+                        h="100%"
+                        objectFit="cover"
+                        borderRadius="10px"
+                       
+                      />
+                    )}
+                  </Box>
                 </Box>
-              </Box>
+              </FormControl>
             </Box>
-          </ModalBody>
-          <ModalFooter display="flex" gap="20px">
-            <Button
-            type="submit"
-            colorScheme="1A72DD"
-              w="80px"
-            >
-              Save
-            </Button>
-            <Button
-              w="80px"
-              onClick={onClose}
-            >
-              Cancel
-            </Button>
+  
+            <Box w='50%' display='flex' flexDirection='column' gap='20px'>
+              <FormControl>
+                <FormLabel htmlFor="product_name">Product Name:</FormLabel>
+                <Input
+                  id="product_name"
+                  name="product_name"
+                  onChange={formik.handleChange}
+                  value={formik.values.product_name}
+                />
+              </FormControl>
+  
+              <FormControl>
+                <FormLabel htmlFor="product_category_id">Product Category:</FormLabel>
+                <Select
+                  id="product_category_id"
+                  name="product_category_id"
+                  onChange={formik.handleChange}
+                  value={formik.values.product_category_id}
+                >
+                  {productCategory.map((item, index) => (
+                    <option key={index} value={item.id} style={{ color: 'black' }}>
+                      {item.category_name}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+  
+              <FormControl>
+                <FormLabel htmlFor="price">Price:</FormLabel>
+                <Input
+                  type="number"
+                  id="price"
+                  name="price"
+                  onChange={formik.handleChange}
+                  value={formik.values.price}
+                />
+              </FormControl>
+  
+              <FormControl>
+                <FormLabel htmlFor="stock">Stock:</FormLabel>
+                <Input
+                  type="number"
+                  id="stock"
+                  name="stock"
+                  onChange={formik.handleChange}
+                  value={formik.values.stock}
+                />
+              </FormControl>
+            </Box>
+          </Box>
+  <ModalFooter>
+          <Button mt={4} mr={3} colorScheme="blue" isLoading={formik.isSubmitting} type="submit">
+            Update Product
+          </Button>
+          <Button mt={4} colorScheme="gray" onClick={onClose}>
+            Close
+          </Button>
           </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
-  );
+        </form>
+      </ModalBody>
+      {/* ... */}
+    </ModalContent>
+  </Modal>
+  )
 };
+  
 
 export default ModalProduct;

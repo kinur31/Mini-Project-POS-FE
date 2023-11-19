@@ -95,8 +95,8 @@ const handleDeleteCategory = async (id) => {
         >
           <Thead bgColor="#1A72DD" h="40px">
             <Tr>
-              <Th color="#ffffff">Category Name</Th>
-              <Th color='#ffffff' textAlign='center'>Action</Th>
+              <Th fontSize="medium" color="#ffffff">Category Name</Th>
+              <Th fontSize="medium" color='#ffffff' textAlign='center'>Action</Th>
             </Tr>
           </Thead>
           <Tbody
