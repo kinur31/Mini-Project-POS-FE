@@ -29,7 +29,6 @@ const Profile = () => {
 
   return (
     <Box>
-      {isLogin ? user?.fullname : "Belum Login"}
       <Box position="relative">
         <Avatar size="md" src={profile} onClick={updateState} />
         {show && (
@@ -60,7 +59,7 @@ const Profile = () => {
                 />
                 <VStack spacing={"0"}>
                   <Text textColor={"white"} fontWeight="bold">
-                    Halo saya {isLogin && user?.fullname} 👋
+                    Halo saya {isLogin ? user?.fullname : "Not logged in"} 👋
                   </Text>
                   <Text
                     textColor={"white"}
