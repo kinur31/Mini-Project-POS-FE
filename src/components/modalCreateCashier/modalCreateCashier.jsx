@@ -19,6 +19,7 @@ import { IconPlus } from "@tabler/icons-react";
 import * as Yup from "yup";
 import axios from "axios";
 import { useFormik } from "formik";
+import { useToast } from "react-toastify";
 
 const CashierScheme = Yup.object().shape({
   fullname: Yup.string()
@@ -47,6 +48,7 @@ const CashierScheme = Yup.object().shape({
 
 function ModalCreateCashier() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
 
   const token = localStorage.getItem("token");
 
@@ -67,10 +69,24 @@ function ModalCreateCashier() {
           },
         }
       );
-      alert("Berhasil membuat kasir");
+      toast({
+        position: "top",
+        title: "Cashier Registration",
+        description: "Success...",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
       onClose();
     } catch (err) {
-      console.log(err);
+      toast({
+        position: "top",
+        title: "Cashier Registration",
+        description: "Error...",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
 
@@ -208,12 +224,7 @@ function ModalCreateCashier() {
             </ModalBody>
 
             <ModalFooter>
-              <Button
-                type="submit"
-                onSubmit={formik.handleSubmit}
-                colorScheme="blue"
-                mr={3}
-              >
+              <Button type="submit" colorScheme="blue" mr={3}>
                 Save
               </Button>
               <Button onClick={onClose}>Cancel</Button>
