@@ -56,7 +56,7 @@ const BodyDashboardAdmin = () => {
   const handleDeleteCashier = async (id) => {
     try {
       const response = await axios.delete(`http://localhost:8080/user/${id}`);
-      console.log("Error Message:", response.data.message);
+
       toast({
         position: "top",
         title: "Delete Cashier",
