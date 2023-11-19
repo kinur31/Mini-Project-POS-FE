@@ -7,15 +7,16 @@ import {
   Th,
   Td,
   TableContainer,
+  useToast,
 } from "@chakra-ui/react";
 import { Switch, Button } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 const BodyDashboardAdmin = () => {
-  // const [selectAll, setSelectAll] = useState(false);
+  const toast = useToast();
   const [cashier, setCashier] = useState([]);
-  const [status, setStatus] = useState(true);
+  const [status, setCashierStatus] = useState(true);
   const fetchCashier = async () => {
     try {
       const response = await axios.get(
@@ -28,15 +29,51 @@ const BodyDashboardAdmin = () => {
     }
   };
 
-  const handleChangeStatus = async () => {
+  const updateCashierStatus = async (id, newStatus) => {
     try {
-      const response = await axios.update(
-        "http://localhost:8080/user/deactive/:id"
-      );
-      setStatus(response.data.data);
-      console.log(response.data.data);
+      const res = await axios.patch(`http://localhost:8080/user/${id}`, {
+        status: newStatus,
+      });
+      setCashierStatus(res?.data?.data);
+      toast({
+        title: res?.data?.message,
+        status: "success",
+        position: "top",
+        duration: 2000,
+        isClosable: true,
+      });
     } catch (err) {
-      console.log(err);
+      toast({
+        title: err?.response?.data,
+        status: "error",
+        position: "top",
+        duration: 2000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleDeleteCashier = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:8080/user/${id}`);
+      console.log("Error Message:", response.data.message);
+      toast({
+        position: "top",
+        title: "Delete Cashier",
+        description: "Success...",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (err) {
+      toast({
+        position: "top",
+        title: "Delete Cashier",
+        description: "Error...",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
 
@@ -97,9 +134,13 @@ const BodyDashboardAdmin = () => {
                 <Td textAlign="center">
                   <Switch
                     colorScheme="green"
-                    onClick={handleChangeStatus}
-                    value={item.status}
-                    isChecked={status === true ? true : false}
+                    isChecked={item.status === true ? true : false}
+                    onChange={() =>
+                      updateCashierStatus(
+                        item.id,
+                        item.status === true ? false : true
+                      )
+                    }
                   />
                 </Td>
                 <Td textAlign="center">
@@ -118,6 +159,7 @@ const BodyDashboardAdmin = () => {
                       variant="outline"
                       color="#1A72DD"
                       border="1px solid #1A72DD"
+                      onClick={() => handleDeleteCashier(item.id)}
                     >
                       Delete
                     </Button>
