@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const initialState = {
   user: {
@@ -53,8 +54,9 @@ export const login = (username, password) => {
       localStorage.setItem("token", res?.data?.data?.token);
       dispatch(setUser(res?.data?.data?.user));
       dispatch(loginSuccess());
+      toast.success("Logged in");
     } catch (err) {
-      alert(err?.response?.data);
+      toast.error("Error logging in. Please check your credentials.");
     }
   };
 };
