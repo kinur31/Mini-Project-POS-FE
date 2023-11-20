@@ -21,7 +21,8 @@ import {
   Stack,
   VStack,
   Image,
-  FormErrorMessage
+  FormErrorMessage,
+  InputLeftAddon
 } from '@chakra-ui/react';
 import * as Yup from "yup";
 import { IconCloudUpload } from "@tabler/icons-react";
@@ -107,6 +108,9 @@ const ModalProduct = ({ isOpen, onClose, productById }) => {
         isClosable: true,
       });
     }
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   const formik = useFormik({
@@ -227,6 +231,8 @@ const ModalProduct = ({ isOpen, onClose, productById }) => {
   
               <FormControl>
                 <FormLabel htmlFor="price">Price:</FormLabel>
+                <InputGroup>
+                <InputLeftAddon bgColor="#EEEDED" children="Rp" />
                 <Input
                   type="number"
                   id="price"
@@ -234,6 +240,7 @@ const ModalProduct = ({ isOpen, onClose, productById }) => {
                   onChange={formik.handleChange}
                   value={formik.values.price}
                 />
+                </InputGroup>
               </FormControl>
   
               <FormControl>
