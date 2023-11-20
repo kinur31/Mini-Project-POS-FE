@@ -35,13 +35,6 @@ const BodyDashboardAdmin = () => {
         status: newStatus,
       });
       setCashierStatus(res?.data?.data);
-      toast({
-        title: res?.data?.message,
-        status: "success",
-        position: "top",
-        duration: 2000,
-        isClosable: true,
-      });
     } catch (err) {
       toast({
         title: err?.response?.data,
@@ -51,6 +44,7 @@ const BodyDashboardAdmin = () => {
         isClosable: true,
       });
     }
+    window.location.reload();
   };
 
   const handleDeleteCashier = async (id) => {
@@ -75,6 +69,7 @@ const BodyDashboardAdmin = () => {
         isClosable: true,
       });
     }
+    window.location.reload();
   };
 
   useEffect(() => {

@@ -89,7 +89,7 @@ function ModalCreateCashier() {
         isClosable: true,
       });
     }
-    // window.location.reload();
+    window.location.reload();
   };
 
   const formik = useFormik({
