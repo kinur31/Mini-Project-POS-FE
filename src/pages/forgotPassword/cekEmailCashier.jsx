@@ -3,7 +3,7 @@ import { AiOutlineDingtalk } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-const CekEmail = () => {
+const CekEmail2 = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -58,4 +58,4 @@ const CekEmail = () => {
   );
 };
 
-export default CekEmail;
+export default CekEmail2;
