@@ -57,11 +57,15 @@ const Profile = () => {
                   onClick={updateState}
                   alignSelf={"flex-end"}
                 />
-                <VStack spacing={"0"}>
+                <VStack spacing={"0"} mb={"7%"}>
                   <Text textColor={"white"} fontWeight="bold" fontSize={"18px"}>
-                    Halo saya {isLogin ? user?.fullname : "Not logged in"} 👋
+                    Halo! saya {isLogin ? user?.fullname : "Not logged in"} 👋
                   </Text>
-                  <Text textColor={"white"} fontWeight="bold" fontSize={"1em"}>
+                  <Text
+                    textColor={"white"}
+                    fontWeight="bold"
+                    fontSize={"0.85em"}
+                  >
                     {isLogin ? user?.email : ""}
                   </Text>
                 </VStack>
