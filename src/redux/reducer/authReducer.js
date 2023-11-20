@@ -58,14 +58,10 @@ export const loginAdmin = (username, password) => {
 
       const { token, user } = res?.data?.data;
 
-      if (user?.role_id === 1) {
-        localStorage.setItem("token", token);
-        dispatch(setUser(user));
-        dispatch(loginSuccess());
-        toast.success("Logged in");
-      } else {
-        toast.error("You are not an admin.");
-      }
+      localStorage.setItem("token", token);
+      dispatch(setUser(user));
+      dispatch(loginSuccess());
+      toast.success("Log out succes");
     } catch (err) {
       toast.error("Error logging in. Please check your credentials.");
     }
