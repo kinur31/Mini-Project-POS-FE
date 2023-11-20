@@ -47,7 +47,7 @@ export const AuthReducer = createSlice({
   },
 });
 
-export const login = (username, password) => {
+export const loginAdmin = (username, password) => {
   return async (dispatch) => {
     try {
       const res = await axios.post("http://localhost:8080/auth/login", {
@@ -55,11 +55,18 @@ export const login = (username, password) => {
         password,
       });
 
-      localStorage.setItem("token", res?.data?.data?.token);
-      dispatch(setUser(res?.data?.data?.user));
-      dispatch(loginSuccess());
+      const { token, user } = res?.data?.data;
+
+      if (user?.role_id === 1) {
+        localStorage.setItem("token", token);
+        dispatch(setUser(user));
+        dispatch(loginSuccess());
+        toast.success("Logged in");
+      } else {
+        toast.error("You are not an admin.");
+      }
     } catch (err) {
-      alert(err?.response?.data);
+      toast.error("Error logging in. Please check your credentials.");
     }
   };
 };
