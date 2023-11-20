@@ -8,7 +8,7 @@ const Filter = (props) => {
   const fetchCategoryProduct = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/product/product-category"
+        "http://localhost:8080/product/list-category"
       );
       setCategoryProduct(response.data.data);
     } catch (err) {
