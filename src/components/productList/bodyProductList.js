@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import Sidebar1 from "../sidebar/sidebar1";
 import ModalProduct from "../modalEditProduct/editProduct";
 import Search from "../search/search";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const formatRupiah = (number) => {
   if (isNaN(number)) {
@@ -25,16 +26,30 @@ const formatRupiah = (number) => {
   return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(number);
 };
 
-const ProductList = () => {
+const ProductList = (props) => {
     const [product, setProduct] = useState([]);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const searchParams = new URLSearchParams(location.search);
+    const productName = searchParams.get("productName");
+    const page = searchParams.get("page");
 
   const fetchProduct = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/filter"
+        "http://localhost:8080/filter",{
+            params: {
+                productName: productName,
+                productCategory: props.filterCategory,
+                sortBy: props.sortBy,
+                page: props.page || props.currentPage,
+                pageSize: 10,
+              },  
+        }
       );
       setProduct(response.data.data);
       console.log(response.data.data);
+      props.setTotalPages(response.data.totalPage);
     } catch (err) {
       console.log(err);
     }
@@ -42,7 +57,9 @@ const ProductList = () => {
 
   useEffect(() => {
     fetchProduct();
-  }, [product]);
+    const pageFromURL = parseInt(props.page || props.currentPage, 10);
+    props.setCurrentPage(pageFromURL);
+  }, [productName, props.filterCategory, props.sortBy, props.currentPage]);
 
   return (
     <>
