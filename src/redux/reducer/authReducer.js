@@ -62,6 +62,7 @@ export const loginAdmin = (username, password) => {
         localStorage.setItem("token", token);
         dispatch(setUser(user));
         dispatch(loginSuccess());
+        toast.success("Logged in");
       } else {
         toast.error("You are not an admin.");
       }
