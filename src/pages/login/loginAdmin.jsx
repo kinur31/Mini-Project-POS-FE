@@ -1,5 +1,5 @@
-import { React, useState } from "react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import React, { useState } from "react";
+import * as Yup from "yup";
 import {
   Box,
   HStack,
@@ -13,9 +13,9 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
@@ -24,19 +24,25 @@ import { login } from "../../redux/reducer/authReducer";
 
 const LoginAdmin = () => {
   const [showPassword, setShowPassword] = useState(false);
-
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
+    validationSchema: Yup.object().shape({
+      username: Yup.string().required("Username is required"),
+      password: Yup.string()
+        .required("Password is required")
+        .matches(
+          /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+          "Password must be at least 8 characters long and contain at least one letter and one number"
+        ),
+    }),
     onSubmit: async (values) => {
       dispatch(login(values.username, values.password));
       toast.success("Logged in");
-      // navigate("/admin");
     },
   });
 
@@ -77,6 +83,9 @@ const LoginAdmin = () => {
               onBlur={formik.handleBlur}
               name="username"
             />
+            {formik.touched.username && formik.errors.username && (
+              <Text color="red">{formik.errors.username}</Text>
+            )}
           </Box>
           <Box mt={"3vh"}>
             <FormLabel fontWeight={"bold"}> Password </FormLabel>
@@ -104,6 +113,9 @@ const LoginAdmin = () => {
                 </Button>
               </InputRightElement>
             </InputGroup>
+            {formik.touched.password && formik.errors.password && (
+              <Text color="red">{formik.errors.password}</Text>
+            )}
           </Box>
         </Box>
         <Box width={"full"} mt={"10vh"}>

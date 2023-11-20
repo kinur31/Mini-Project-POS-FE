@@ -5,11 +5,11 @@ import ForgotPassword from "./pages/forgotPassword/forgotPassword";
 import CekEmail from "./pages/forgotPassword/cekEmail";
 import ResetPassword from "./pages/resetPassword/resetPassword";
 import Auth from "./components/auth";
-import DashboardAdmin from "./pages/dashboardAdmin/dahsboardAdmin";
-import { useSelector } from "react-redux";
+// import DashboardAdmin from "./pages/dashboardAdmin/dahsboardAdmin";
+// import { useSelector } from "react-redux";
 
 function App() {
-  const { user } = useSelector((state) => state.AuthReducer);
+  // const { user } = useSelector((state) => state.AuthReducer);
 
   return (
     <>
@@ -20,12 +20,12 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/auth/reset-password" element={<ResetPassword />} />
           <Route path="/cek-email" element={<CekEmail />} />
-          <Route
+          {/* <Route
             path="/admin"
             element={
               user?.roleId === "2" ? <DashboardAdmin /> : <LoginScreen />
             }
-          />
+          /> */}
         </Routes>
       </Auth>
     </>
