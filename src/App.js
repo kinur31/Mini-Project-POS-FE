@@ -5,6 +5,9 @@ import ForgotPassword from "./pages/forgotPassword/forgotPassword";
 import CekEmail from "./pages/forgotPassword/cekEmail";
 import ResetPassword from "./pages/resetPassword/resetPassword";
 import Auth from "./components/auth";
+import Menu from "./pages/menu";
+import DashboardCashier from "./pages/dashboard/cashier";
+// import Home from "./pages/home";
 
 function App() {
   return (
@@ -16,7 +19,10 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/auth/reset-password" element={<ResetPassword />} />
           <Route path="/cek-email" element={<CekEmail />} />
-        </Routes>
+        <Route path="/dashboard-cashier" element={<DashboardCashier />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/menu/search" element={<Menu />} />
+      </Routes>
       </Auth>
     </>
   );
