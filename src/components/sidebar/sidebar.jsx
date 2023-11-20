@@ -421,7 +421,7 @@ const SideBar = () => {
               </Box>
               <Text
                 fontFamily="Nunito"
-                fontSize="18px"
+                fontSize="20px"
                 fontWeight="600"
                 isTruncated
               >

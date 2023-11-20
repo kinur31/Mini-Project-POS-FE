@@ -118,7 +118,7 @@ const BodyDashboardAdmin = () => {
             color="#1E1E1E"
             fontFamily="Nunito"
             fontWeight="400"
-            fontSize="18px"
+            fontSize="12px"
             textAlign="center"
           >
             {cashier.map((item, index) => (
