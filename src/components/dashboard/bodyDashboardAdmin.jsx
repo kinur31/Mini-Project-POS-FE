@@ -12,6 +12,7 @@ import {
 import { Switch, Button } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ModalEditCashier from "../modalEditCashier/modalEditCashier";
 
 const BodyDashboardAdmin = () => {
   const toast = useToast();
