@@ -17,7 +17,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import { resetPassword } from "../../redux/reducers/authReducer";
+import { resetPassword } from "../../redux/reducer/authReducer";
 import { useNavigate } from "react-router-dom";
 
 const ResetPassword = () => {

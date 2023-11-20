@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Box,
   HStack,
@@ -9,10 +10,9 @@ import {
   Input,
   Button,
   Text,
-  InputRightElement,
   InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -20,9 +20,9 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { loginCashier } from "../../redux/reducers/authReducer";
+import { loginAdmin } from "../../redux/reducer/authReducer";
 
-const LoginCashier = () => {
+const LoginAdmin = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
@@ -34,13 +34,10 @@ const LoginCashier = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      dispatch(loginCashier(values.username, values.password));
+      dispatch(loginAdmin(values.username, values.password));
+      navigate("/user-management");
     },
   });
-
-  const handleChange = () => {
-    navigate("/");
-  };
 
   return (
     <>
@@ -48,22 +45,23 @@ const LoginCashier = () => {
         <Box className="title-tab" width={"full"}>
           <HStack spacing={"90px"}>
             <Box>
-              <IconButton
-                bg={"#1A72DD"}
-                aria-label="Search database"
-                icon={<IoIosArrowBack />}
-                color={"white"}
-                onClick={handleChange}
-              />
+              <Link to={"/"}>
+                <IconButton
+                  bg={"#1A72DD"}
+                  aria-label="Search database"
+                  icon={<IoIosArrowBack />}
+                  color={"white"}
+                />
+              </Link>
             </Box>
             <Box>
               <Heading color={"#1A72DD"} fontSize={"24px"}>
-                Log in as Cashier
+                Log in as Admin
               </Heading>
             </Box>
           </HStack>
         </Box>
-        <Box marginTop={"10%"} width={"full"}>
+        <Box mt={"10%"} width={"full"}>
           <Box>
             <FormLabel fontWeight={"bold"}> Username </FormLabel>
             <Input
@@ -74,9 +72,9 @@ const LoginCashier = () => {
               size="lg"
               placeholder="Username"
               value={formik.values.username}
+              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               name="username"
-              onChange={formik.handleChange}
             />
           </Box>
           <Box mt={"3vh"}>
@@ -120,7 +118,7 @@ const LoginCashier = () => {
             Login
           </Button>
         </Box>
-        <Link to="/forgot-password2">
+        <Link to="/forgot-password1">
           <Text color={"#1A72DD"}>Forgot Password?</Text>
         </Link>
       </VStack>
@@ -129,4 +127,4 @@ const LoginCashier = () => {
   );
 };
 
-export default LoginCashier;
+export default LoginAdmin;
