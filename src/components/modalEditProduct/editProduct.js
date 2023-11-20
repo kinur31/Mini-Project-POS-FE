@@ -38,7 +38,7 @@ const productSchema = Yup.object().shape({
 
 const ModalProduct = ({ isOpen, onClose, productById }) => {
   const [productCategory, setProductCategory] = useState([]);
-  const [image, setImage] = useState(productById?.image || null);
+  const [image, setImage] = useState(productById?.image);
   const [showAlert, setShowAlert] = useState(false);
 
   const toast = useToast();
@@ -82,7 +82,7 @@ const ModalProduct = ({ isOpen, onClose, productById }) => {
       price: productById?.price || '',
       stock: productById?.stock || '',
       image: productById?.image,
-      status_product: productById?.status_product || false,
+      // status_product: productById?.status_product || false,
     },
     validationSchema: productSchema,
     onSubmit: async (values, { setSubmitting }) => {
