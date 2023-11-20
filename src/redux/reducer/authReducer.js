@@ -46,6 +46,7 @@ export const AuthReducer = createSlice({
     },
   },
 });
+
 export const login = (username, password) => {
   return async (dispatch) => {
     try {
