@@ -37,8 +37,8 @@ function App() {
         <Route path="/add-category" element={<AddCategory />}/>
         <Route path="/modal-category" element={<ModalCategory />}/>
         <Route path="/edit-product" element={<ModalProduct />}/>
-        <Route path="/head-menu" element={<Menu />}/>
-        <Route path="/product-list" element={<ProductList />}/>
+        <Route path="/product-list" element={<Menu />}/>
+        {/* <Route path="/product-list" element={<ProductList />}/> */}
       </Routes>
     </>
   );

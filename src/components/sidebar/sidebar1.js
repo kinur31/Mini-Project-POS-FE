@@ -212,7 +212,7 @@ const Sidebar1 = () => {
             flexDirection="column"
             gap="14px"
           >
-            <Link to={""}>
+            <Link to={"/product-list"}>
               <Box
                 style={{
                   borderBottom:
