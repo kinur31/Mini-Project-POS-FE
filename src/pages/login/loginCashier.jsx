@@ -20,7 +20,7 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { login } from "../../redux/reducer/authReducer";
+import { loginCashier } from "../../redux/reducer/authReducer";
 
 const LoginCashier = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,7 +34,7 @@ const LoginCashier = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      dispatch(login(values.username, values.password));
+      dispatch(loginCashier(values.username, values.password));
     },
   });
 
