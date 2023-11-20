@@ -58,15 +58,11 @@ const Profile = () => {
                   alignSelf={"flex-end"}
                 />
                 <VStack spacing={"0"}>
-                  <Text textColor={"white"} fontWeight="bold">
+                  <Text textColor={"white"} fontWeight="bold" fontSize={"18px"}>
                     Halo saya {isLogin ? user?.fullname : "Not logged in"} 👋
                   </Text>
-                  <Text
-                    textColor={"white"}
-                    fontWeight="bold"
-                    fontSize={".75em"}
-                  >
-                    {user.email}
+                  <Text textColor={"white"} fontWeight="bold" fontSize={"1em"}>
+                    {isLogin ? user?.email : ""}
                   </Text>
                 </VStack>
                 <Divider borderColor={"#192655"} borderWidth={"2px"} />
