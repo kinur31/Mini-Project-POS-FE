@@ -22,6 +22,7 @@ const BodyDashboardAdmin = () => {
   const [cashier, setCashier] = useState([]);
   const [cashierById, setCashierById] = useState(null);
   const [status, setCashierStatus] = useState(true);
+
   const fetchCashier = async () => {
     try {
       const response = await axios.get(

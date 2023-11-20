@@ -1,6 +1,6 @@
-import { Box, Text, Input } from "@chakra-ui/react";
-import { IconSearch } from "@tabler/icons-react";
+import { Box, Text } from "@chakra-ui/react";
 import ModalCreateCashier from "../modalCreateCashier/modalCreateCashier";
+import Search from "../search/search";
 
 const HeadDashboardAdmin = () => {
   return (
@@ -11,23 +11,9 @@ const HeadDashboardAdmin = () => {
         </Text>
 
         <Box display="flex" alignItems="center" gap="18px">
-          <Box
-            w="300px"
-            display="flex"
-            alignItems="center"
-            bgColor="#D1D1D1"
-            padding="0 5px 0 5px"
-            borderRadius="5px"
-          >
-            <Input
-              border="none"
-              _focus={{ border: "none", boxShadow: "none" }}
-              placeholder="Search Cashier here...."
-            />
-            <IconSearch color="#838383" />
-          </Box>
-          <ModalCreateCashier />
+          <Search />
         </Box>
+        <ModalCreateCashier />
       </Box>
     </Box>
   );
