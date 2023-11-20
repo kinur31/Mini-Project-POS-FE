@@ -71,6 +71,30 @@ export const loginAdmin = (username, password) => {
   };
 };
 
+export const loginCashier = (username, password) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post("http://localhost:8080/auth/login", {
+        username,
+        password,
+      });
+
+      const { token, user } = res?.data?.data;
+
+      if (user?.role_id === 2) {
+        localStorage.setItem("token", token);
+        dispatch(setUser(user));
+        dispatch(loginSuccess());
+        toast.success("Logged in");
+      } else {
+        toast.error("You are not an cashier.");
+      }
+    } catch (err) {
+      toast.error("Error logging in. Please check your credentials.");
+    }
+  };
+};
+
 export const keepLogin = () => {
   return async (dispatch) => {
     try {
