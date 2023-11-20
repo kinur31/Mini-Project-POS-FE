@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -26,7 +26,7 @@ const LoginAdmin = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -38,6 +38,10 @@ const LoginAdmin = () => {
       // navigate("/admin");
     },
   });
+
+  const handleChange = () => {
+    navigate("/");
+  };
 
   return (
     <>
@@ -51,6 +55,7 @@ const LoginAdmin = () => {
                   aria-label="Search database"
                   icon={<IoIosArrowBack />}
                   color={"white"}
+                  onClick={handleChange}
                 />
               </Link>
             </Box>
