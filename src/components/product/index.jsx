@@ -72,13 +72,17 @@ const Product = (props) => {
           lg: "repeat(5, 1fr)",
         }}
         w="full"
+        top={0}
+        h="full"
         gap={2}
       >
         {product.length > 0 ? ( product?.map((item, index) => (
           <VStack
+          top={0}
             key={index}
             // p={2}
             w="full"
+            // h="10em"
             pt={2}
             rounded={8}
             overflow="hidden"

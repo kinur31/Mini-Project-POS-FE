@@ -13,6 +13,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutSuccess } from "../../redux/reducers/authReducer";
 import { BiLogOut } from "react-icons/bi";
+import { IconChevronRight, IconChevronLeft, IconLayoutDashboard } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
@@ -25,23 +26,30 @@ const Profile = () => {
     setShow(!show);
   };
 
-  const profile = localStorage.getItem("profile");
+  const profile = localStorage.getItem("token");
 
   return (
     <Box>
-      <Box position="relative">
-        <Avatar size="md" src={profile} onClick={updateState} />
+      <Box>
+        <Avatar size="md" src= {isLogin ? (
+          <Avatar
+            size="md"
+            rounded="full"
+            src={`${process.env.REACT_APP_IMAGE_URL}/avatar/${user?.avatar}`}
+          />
+        ) : (
+          <IconChevronRight size="18px" />
+        )} onClick={updateState} />
         {show && (
           <Box
             opacity={"1"}
             position={"fixed"}
-            bottom={"7em"}
-            left={"0"}
+            bottom={"2em"}
+            left={"-5"}
             p={"1em 5em"}
-            zIndex={"10"}
           >
             <Box
-              w={"20em"}
+              w={"8em"}
               p={"1em 1em"}
               bgColor={"#1A72DD"}
               borderRadius={"1em"}
@@ -57,27 +65,9 @@ const Profile = () => {
                   onClick={updateState}
                   alignSelf={"flex-end"}
                 />
-                <VStack spacing={"0"} mb={"7%"}>
-                  <Text textColor={"white"} fontWeight="bold" fontSize={"18px"}>
-                    Halo! saya {isLogin ? user?.fullname : "Not logged in"} 👋
-                  </Text>
-                  <Text
-                    textColor={"white"}
-                    fontWeight="bold"
-                    fontSize={"0.85em"}
-                  >
-                    {isLogin ? user?.email : ""}
-                  </Text>
-                </VStack>
-                <Divider borderColor={"#192655"} borderWidth={"2px"} />
                 <VStack>
-                  <Link to={"/dashboard"}>
-                    <Text textColor={"whatsapp.400"} variant={"link"}>
-                      Dashboard
-                    </Text>
-                  </Link>
                   <Button
-                    color="red.400"
+                    color="white"
                     variant={"link"}
                     alignItems={"center"}
                     onClick={async () => {

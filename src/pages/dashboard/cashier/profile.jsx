@@ -1,74 +1,110 @@
-import { Box, Divider, Flex, Heading, Stack, Text, VStack } from "@chakra-ui/layout"
-import Sidebar from "../../../components/sidebar/sidebar";
-import { Avatar, AvatarBadge } from "@chakra-ui/avatar";
-import { Button, IconButton } from "@chakra-ui/button";
+import { Box, Flex, Heading, Stack, Text } from "@chakra-ui/layout";
+import { Avatar } from "@chakra-ui/avatar";
 import { BiSolidEdit } from "react-icons/bi";
 import { Input } from "@chakra-ui/input";
-import { useRef, useState } from 'react';        
+import { useEffect, useRef, useState } from "react";
 import CashierSidebar from "../../../components/sidebar/CashierSidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { FormControl, FormLabel } from "@chakra-ui/form-control";
+import { useFormik } from "formik";
+import axios from "axios";
+import { useToast } from "@chakra-ui/toast";
+import { IconButton } from "@chakra-ui/button";
+import AvatarModal from "./AvatarModal";
+import { useDisclosure } from "@chakra-ui/hooks";
 
-const CashierProfile = ({handleFile}) => {
-    const hiddenFileInput = useRef(null); 
+const CashierProfile = (handleFile) => {
+  const [userById, setUserById] = useState([]);
 
-    const handleClick = event => {
-      hiddenFileInput.current.click();   
-    };
-  
-    const handleChange = event => {
-      const fileUploaded = event.target.files[0];
-      handleFile(fileUploaded);                   // ADDED
-    };
-    const { user, isLogin } = useSelector((state) => state.AuthReducer);
-  const navigate = useNavigate();
+  const handleModalClose = () => {
+    onClose();
+    // getProductAll();
+  };
+
+  const { user, isLogin } = useSelector((state) => state.AuthReducer);
+  const [image, setImage] = useState(user?.avatar);
   const dispatch = useDispatch();
-  
-    return (
-        <Flex>
-          
-      <CashierSidebar/>
-        <Box display="flex" justifyContent="space-between" m={0} w="full" p={4}>
-            <Stack w="20em" alignItems="center">
-                <Box>
-            <Avatar size="2xl" rounded="full" src="./images/carousel/banner1.jpg">
-                
-            <Flex gap={0} position="absolute" bottom={2} right={0}>
-            <IconButton
-            colorScheme="facebook"
-            size="md"
-            icon={<BiSolidEdit />  }
-            rounded="full"
-        // className="button-upload"
-        onClick={handleClick}
-      />
-      <Input 
-        type="file"
-        onChange={handleChange}
-        ref={hiddenFileInput}
-        display="none"
-        // style={{display:'none'}}
-      />
-            </Flex>
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+  useEffect(() => {}, [image]);
 
+  return (
+    <Flex>
+      <CashierSidebar />
+      <Box display="flex" justifyContent="space-between" m={0} w="full" p={4}>
+        <Stack w="20em" alignItems="center">
+          <Box>
+            <Avatar
+              size="2xl"
+              rounded="full"
+              src={`${process.env.REACT_APP_IMAGE_URL}/avatar/${user?.avatar}`}
+            >
+              <Flex gap={0} position="absolute" bottom={2} right={0}>
+                <IconButton
+                  colorScheme="facebook"
+                  size="md"
+                  icon={<BiSolidEdit />}
+                  rounded="full"
+                  onClick={() => {
+                    setUserById(user?.id);
+                    setImage(user?.avatar);
+                    onOpen();
+                  }}
+                />
+              </Flex>
             </Avatar>
+          </Box>
+          <Text fontWeight="bold" fontSize={"18px"}>
+            {isLogin ? user?.fullname : "Guest"}
+          </Text>
+          <Text>Cashier</Text>
+        </Stack>
+        <Stack w="full">
+          <Heading size="md">Personal Information</Heading>
+          <Box display="flex" flexDirection="column" gap="20px">
+            <FormControl>
+              <FormLabel>Full name:</FormLabel>
+              <Input
+                type="text"
+                disabled="true"
+                _placeholder={{ color: "black" }}
+                placeholder={isLogin ? user?.fullname : "Guest"}
+              />
+            </FormControl>
 
-                </Box>
-                <Text fontWeight="bold" fontSize={"18px"}>
-                {isLogin ? user?.fullname : "Guest"}
-                {isLogin ? user?.id : "Guest"}
-                {isLogin ? user?.email : "Guest"}
-                  </Text>
-                <Text>Cashier</Text>
-            </Stack>
-            <Stack w="full">
-            <Heading size="md">Personal Information</Heading>
+            <FormControl>
+              <FormLabel>Address:</FormLabel>
+              <Input
+                type="text"
+                disabled="true"
+                _placeholder={{ color: "black" }}
+                placeholder={isLogin ? user?.address : "Guest"}
+              />
+            </FormControl>
 
-            </Stack>
-
-        </Box>
-        </Flex>
-    )
-}
+            <FormControl>
+              <FormLabel>Username:</FormLabel>
+              <Input
+                type="text"
+                disabled="true"
+                _placeholder={{ color: "black" }}
+                placeholder={isLogin ? user?.username : "Guest"}
+              />
+            </FormControl>
+          </Box>
+        </Stack>
+      </Box>
+      {isOpen && (
+        <AvatarModal
+          isOpen={isOpen}
+          onClose={handleModalClose}
+          user={user}
+          userById={userById}
+          setUserById={setUserById}
+        />
+      )}
+    </Flex>
+  );
+};
 
 export default CashierProfile;

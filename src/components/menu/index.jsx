@@ -1,12 +1,12 @@
 import { Box, Text, Button, Flex, Divider, Stack } from "@chakra-ui/react";
-import Search from "../../components/search";
-import Filter from "../../components/filter";
-import Product from "../../components/product";
+import Search from "../search";
+import Filter from "../filter";
+import Product from "../product";
 import { useState } from "react";
-import Cart from "../../components/cart";
-import CartButton from "../../components/cart/cartButton";
-import Pagination from "../../components/pagination";
-import SideBarCashier from "../../components/sidebar/CashierSidebar";
+import Cart from "../cart";
+import CartButton from "../cart/cartButton";
+import Pagination from "../pagination";
+import SideBarCashier from "../sidebar/CashierSidebar";
 
 const Menu = () => {
   const [filterCategory, setFilterCategory] = useState(null);
@@ -23,7 +23,7 @@ const Menu = () => {
       <Box display="flex" flexDirection={{base: "column", lg:"row"}} justifyContent="space-between">
         <Flex
           flexDirection="column"
-          justifyContent="space-between"
+          // justifyContent="space-between"
           //   alignItems="center"
           w="full"
           m={0}
