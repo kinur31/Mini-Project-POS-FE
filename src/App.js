@@ -9,8 +9,10 @@ import CekEmail1 from "./pages/forgotPassword/cekEmailAdmin";
 import CekEmail2 from "./pages/forgotPassword/cekEmailCashier";
 import ForgotPassword2 from "./pages/forgotPassword/forgotPassword2";
 import ForgotPassword1 from "./pages/forgotPassword/forgotPassword1";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { user } = useSelector((state) => state.AuthReducer);
   return (
     <>
       <Auth>
@@ -24,6 +26,10 @@ function App() {
           <Route path="/cek-email1" element={<CekEmail1 />} />
           <Route path="/cek-email2" element={<CekEmail2 />} />
           <Route path="/user-management" element={<DashboardAdmin />} />
+          <Route
+            path="/admin"
+            element={user?.id === 1 ? <DashboardAdmin /> : <LoginScreen />}
+          />
         </Routes>
       </Auth>
     </>

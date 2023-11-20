@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const initialState = {
   user: {
     id: null,
-    roleId: null,
+    role_id: null,
     fullname: "",
     address: "",
     username: "",
@@ -20,12 +20,12 @@ export const AuthReducer = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      const { id, roleId, fullname, address, username, email, avatar } =
+      const { id, role_id, fullname, address, username, email, avatar } =
         action.payload;
 
       state.user = {
         id,
-        roleId,
+        role_id,
         fullname,
         address,
         username,
