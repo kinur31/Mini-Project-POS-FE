@@ -6,7 +6,7 @@ import { useState } from "react";
 import Cart from "../../components/cart";
 import CartButton from "../../components/cart/cartButton";
 import Pagination from "../../components/pagination";
-import Sidebar from "../../components/sidebar/sidebar";
+import SideBarCashier from "../../components/sidebar/CashierSidebar";
 
 const Menu = () => {
   const [filterCategory, setFilterCategory] = useState(null);
@@ -19,7 +19,7 @@ const Menu = () => {
 
   return (
     <Flex>
-      <Sidebar/>
+      <SideBarCashier/>
       <Box display="flex" flexDirection={{base: "column", lg:"row"}} justifyContent="space-between">
         <Flex
           flexDirection="column"

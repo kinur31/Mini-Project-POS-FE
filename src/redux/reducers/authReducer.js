@@ -5,11 +5,10 @@ import { toast } from "react-toastify";
 const initialState = {
   user: {
     id: null,
-    roleId: null,
-    fullname: "",
-    address: "",
-    username: "",
     email: "",
+    username: "",
+    roleId: null,
+    point: null,
     avatar: "",
   },
   isLogin: false,
@@ -20,16 +19,14 @@ export const AuthReducer = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      const { id, roleId, fullname, address, username, email, avatar } =
-        action.payload;
+      const { id, email, username, roleId, points, avatar } = action.payload;
 
       state.user = {
         id,
-        roleId,
-        fullname,
-        address,
-        username,
         email,
+        username,
+        roleId,
+        points,
         avatar,
       };
     },
@@ -41,36 +38,10 @@ export const AuthReducer = createSlice({
       localStorage.removeItem("token");
     },
     keepLoginSuccess: (state) => {
-      if (!state.isLogin) {
-        state.isLogin = true;
-      }
+      state.isLogin = true;
     },
   },
 });
-
-export const loginAdmin = (username, password) => {
-  return async (dispatch) => {
-    try {
-      const res = await axios.post("http://localhost:8080/auth/login", {
-        username,
-        password,
-      });
-
-      const { token, user } = res?.data?.data;
-
-      if (user?.role_id === 1) {
-        localStorage.setItem("token", token);
-        dispatch(setUser(user));
-        dispatch(loginSuccess());
-        toast.success("Logged in");
-      } else {
-        toast.error("You are not an admin.");
-      }
-    } catch (err) {
-      toast.error("Error logging in. Please check your credentials.");
-    }
-  };
-};
 
 export const loginCashier = (username, password) => {
   return async (dispatch) => {
@@ -107,6 +78,7 @@ export const keepLogin = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+
         dispatch(setUser(res?.data?.data));
         dispatch(keepLoginSuccess());
       }

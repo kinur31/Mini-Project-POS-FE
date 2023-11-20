@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
-import { logoutSuccess } from "../../redux/reducer/authReducer";
+import { logoutSuccess } from "../../redux/reducers/authReducer";
 import { BiLogOut } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 
@@ -60,6 +60,7 @@ const Profile = () => {
                 <VStack spacing={"0"}>
                   <Text textColor={"white"} fontWeight="bold" fontSize={"18px"}>
                     Halo saya {isLogin ? user?.fullname : "Not logged in"} 👋
+                    Halo saya {isLogin ? user?.id : "Not logged in"} 👋
                   </Text>
                   <Text textColor={"white"} fontWeight="bold" fontSize={"1em"}>
                     {isLogin ? user?.email : ""}

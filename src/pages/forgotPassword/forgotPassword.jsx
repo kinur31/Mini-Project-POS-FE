@@ -11,7 +11,7 @@ import { AiOutlineDingtalk } from "react-icons/ai";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
-import { forgotPassword } from "../../redux/reducer/authReducer";
+import { forgotPassword } from "../../redux/reducers/authReducer";
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {

@@ -9,7 +9,8 @@ import Menu from "./pages/menu";
 import DashboardCashier from "./pages/dashboard/cashier";
 // import Home from "./pages/home";
 import DashboardAdmin from "./pages/dashboard/dashboardAdmin";
-import Auth from "./components/auth";
+import Profile from "./components/profile/profile";
+import CashierProfile from "./pages/dashboard/cashier/profile";
 
 function App() {
   return (
@@ -21,10 +22,12 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/auth/reset-password" element={<ResetPassword />} />
           <Route path="/cek-email" element={<CekEmail />} />
-        <Route path="/dashboard-cashier" element={<DashboardCashier />} />
+        <Route path="/cashier-dashboard" element={<DashboardCashier />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/menu/search" element={<Menu />} />
           <Route path="/user-management" element={<DashboardAdmin />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/cashier-profile" element={<CashierProfile />} />
         </Routes>
       </Auth>
     </>

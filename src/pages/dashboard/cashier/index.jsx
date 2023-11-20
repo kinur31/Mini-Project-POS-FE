@@ -1,10 +1,10 @@
 import { Box, Flex, Text } from "@chakra-ui/layout"
-import Sidebar from "../../../components/sidebar/sidebar";
+import SideBarCashier from "../../../components/sidebar/CashierSidebar";
 
 const DashboardCashier = () => {
     return (
         <Flex>
-      <Sidebar/>
+      <SideBarCashier/>
         <Box m={0}>
             <Text>This is Dashboard Cashier Page</Text>
         </Box>

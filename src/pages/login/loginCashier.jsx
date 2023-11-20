@@ -20,7 +20,7 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { loginCashier } from "../../redux/reducer/authReducer";
+import { loginCashier } from "../../redux/reducers/authReducer";
 
 const LoginCashier = () => {
   const [showPassword, setShowPassword] = useState(false);
