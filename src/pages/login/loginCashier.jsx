@@ -38,23 +38,20 @@ const LoginCashier = () => {
     },
   });
 
-  const handleChange = () => {
-    navigate("/");
-  };
-
   return (
     <>
       <VStack margin={"5%"}>
         <Box className="title-tab" width={"full"}>
           <HStack spacing={"90px"}>
             <Box>
-              <IconButton
-                bg={"#1A72DD"}
-                aria-label="Search database"
-                icon={<IoIosArrowBack />}
-                color={"white"}
-                onClick={handleChange}
-              />
+              <Link to={"/"}>
+                <IconButton
+                  bg={"#1A72DD"}
+                  aria-label="Search database"
+                  icon={<IoIosArrowBack />}
+                  color={"white"}
+                />
+              </Link>
             </Box>
             <Box>
               <Heading color={"#1A72DD"} fontSize={"24px"}>
