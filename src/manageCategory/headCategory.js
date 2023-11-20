@@ -32,13 +32,6 @@ const HeadCategory = () => {
             padding="0 5px 0 5px"
             borderRadius="5px"
           >
-            <Input
-            
-              border="none"
-              _focus={{ border: "none", boxShadow: "none" }}
-              placeholder="Search Product here...."
-            />
-            <IconSearch color="#838383" />
           </Box>
           <ModalCategory  />
         </Box>
