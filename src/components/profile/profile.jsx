@@ -76,7 +76,10 @@ const Profile = () => {
                     color="red.400"
                     variant={"link"}
                     alignItems={"center"}
-                    onClick={() => dispatch(logoutSuccess())}
+                    onClick={async () => {
+                      await dispatch(logoutSuccess());
+                      navigate("/login-admin");
+                    }}
                   >
                     <Text fontWeight="bold" mr={2}>
                       Log Out

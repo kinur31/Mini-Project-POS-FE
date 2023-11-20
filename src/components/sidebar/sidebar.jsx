@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
   IconLayoutDashboard,
-  IconUser,
   IconBrandDatabricks,
   IconChevronDown,
   IconChevronUp,
@@ -11,8 +10,10 @@ import {
 } from "@tabler/icons-react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 import Profile from "../profile/profile";
+import { useSelector } from "react-redux";
 
 const SideBar = () => {
+  const { user, isLogin } = useSelector((state) => state.AuthReducer);
   const [activeUser, setActiveUser] = useState("");
   const [activeMenu, setActiveMenu] = useState("dash");
   const [showProductDropdown, setShowProductDropdown] = useState(false);
@@ -57,6 +58,7 @@ const SideBar = () => {
       top={0}
       position="sticky"
       h="100vh"
+      w="350px"
       display="flex"
       flexDirection="column"
       justifyContent="space-between"
@@ -423,7 +425,7 @@ const SideBar = () => {
                 fontWeight="600"
                 isTruncated
               >
-                Fransisca Angelica
+                {isLogin ? user?.fullname : "Not Found"}
               </Text>
             </Box>
             <Box padding="0 10px 0 0">
