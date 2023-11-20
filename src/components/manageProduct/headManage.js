@@ -3,6 +3,7 @@ import { IconSearch, IconPlus } from "@tabler/icons-react";
 // import ModalCreateProduct from '../../modal/createProduct';
 import { Link } from "react-router-dom";
 import ModalProduct from "../modal/modalProduct";
+import Search from "../search/search";
 
 const HeadManageProduct = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,28 +28,8 @@ const HeadManageProduct = (props) => {
             padding="0 5px 0 5px"
             borderRadius="5px"
           >
-            <Input
-            
-              border="none"
-              _focus={{ border: "none", boxShadow: "none" }}
-              placeholder="Search Product here...."
-            />
-            <IconSearch color="#838383" />
           </Box>
           <ModalProduct />
-          {/* <Link to={"/add-product"}>
-          <Button
-            bgColor="#1A72DD"
-            color="#ffffff"
-            display="flex"
-            gap="10px"
-            onClick={onOpen}
-            alignItems="center"
-          >
-            {" "}
-            <IconPlus /> <Text>Create Product</Text>{" "}
-          </Button>
-          </Link> */}
         </Box>
       </Box>
     </Box>

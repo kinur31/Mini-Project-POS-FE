@@ -54,14 +54,6 @@ const ModalProduct = ({ isOpen, onClose, productById }) => {
 
   useEffect(() => {
     fetchCategory();
-    // if (showAlert) {
-    //   const timeout = setTimeout(() => {
-    //     setShowAlert(false);
-    //     onClose(); 
-    //   }, 2000); 
-      
-    //   return () => clearTimeout(timeout);
-    // }
   }, [ onClose]);
 
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
@@ -75,55 +67,7 @@ const ModalProduct = ({ isOpen, onClose, productById }) => {
     },
   });
 
-  // const formik = useFormik({
-  //   initialValues: {
-  //     product_name: productById?.product_name || '',
-  //     product_category_id: productById?.product_category_id || '',
-  //     price: productById?.price || '',
-  //     stock: productById?.stock || '',
-  //     image: productById?.image,
-  //     // status_product: productById?.status_product || false,
-  //   },
-  //   validationSchema: productSchema,
-  //   onSubmit: async (values, { setSubmitting }) => {
-  //     try {
-  //       const formData = new FormData();
-  //       acceptedFiles.forEach((file) => {
-  //         formData.append("image", file);
-  //       });
-
-  //       // Check if a new file is uploaded, if not, use the existing image
-  //       if (acceptedFiles.length === 0) {
-  //         formData.delete('image');
-  //       }
-
-  //       console.log([...formData]);
-  //       console.log(acceptedFiles);
-  //       await axios.patch(`http://localhost:8080/product/edit/${productById.id}`, formData);
-
-  //       onClose();
-  //       toast({
-  //         position: "top",
-  //         title: 'Product Updated',
-  //         status: 'success',
-  //         duration: 3000,
-  //         isClosable: true,
-  //       });
-  //     } catch (error) {
-  //       console.error('Error updating product:', error);
-  //       toast({
-  //         position: "top",
-  //         title: 'Error',
-  //         description: 'Failed to update product.',
-  //         status: 'error',
-  //         duration: 3000,
-  //         isClosable: true,
-  //       });
-  //     } finally {
-  //       setSubmitting(false);
-  //     }
-  //   },
-  // });
+  
   const formProduct = async (
     product_name,
     product_category_id,
@@ -137,8 +81,6 @@ const ModalProduct = ({ isOpen, onClose, productById }) => {
       formData.append("product_category_id", product_category_id);
       formData.append("price", price);
       formData.append("stock", stock);
-      // formData.append("image", fieldImage);
-      // const formData = new FormData();
             acceptedFiles.forEach((file) => {
               formData.append("image", file);
             });
@@ -148,49 +90,24 @@ const ModalProduct = ({ isOpen, onClose, productById }) => {
       await axios.patch(`http://localhost:8080/product/edit/${productById.id}`, formData);
       toast({
         position: "top",
-        title: "Add Product",
+        title: "Edir Product",
         description: "Success...",
         status: "success",
-        duration: 3000,
+        duration: 4000,
         isClosable: true,
       });
       onClose();
     } catch (err) {
       toast({
         position: "top",
-        title: "Add Product",
+        title: "Edit Product",
         description: "Error...",
         status: "error",
         duration: 3000,
         isClosable: true,
       });
     }
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 1000);
   };
-
-  // const fetchCategory = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       "http://localhost:8080/product/list-category"
-  //     );
-  //     setProductCategory(response.data.data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchCategory();
-  // }, []);
-
-  // const handleReset = () => {
-  //   setProductImage(null);
-  //   if (inputImage.current) {
-  //     inputImage.current.value = null;
-  //   }
-  // };
 
   const formik = useFormik({
     initialValues: {
@@ -251,7 +168,7 @@ const ModalProduct = ({ isOpen, onClose, productById }) => {
                       h="100%"
                       position="absolute"
                       opacity="0"
-                    />
+                    />           
                     {/* Display the existing image */}
                     {image && !acceptedFiles.length && (
                       <Image
