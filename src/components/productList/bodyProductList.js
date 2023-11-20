@@ -95,7 +95,7 @@ const ProductList = (props) => {
                 <Td>
                   
                   <Image
-                    // height="120px"
+                    height="80px"
                     width="100px"
                     src={`${process.env.REACT_APP_IMAGE_URL}/products/${item?.image}`}
                     alt="product pict"

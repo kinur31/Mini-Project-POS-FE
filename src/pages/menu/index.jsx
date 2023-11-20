@@ -23,28 +23,32 @@ const Menu = () => {
   console.log("Testing");
 
   return (
-    <Flex>
+    <Flex >
       <Sidebar1/>
-      <Box display="flex" flexDirection={{base: "column", lg:"row"}} justifyContent="space-between">
+      <Box w="full" display="flex" flexDirection={{base: "column", lg:"row"}} justifyContent="space-between">
         <Flex
           flexDirection="column"
           justifyContent="space-between"
           //   alignItems="center"
           w="full"
           m={0}
-          p="2em"
+          pt={2}
           gap={2}
           // top={0}
         >
-          <Stack>
-          <Search />
+          
+            <Flex>
+          
           <Filter
             filterCategory={filterCategory}
             setFilterCategory={setFilterCategory}
             sortBy={sortBy}
             setSortBy={setSortBy}
           />
-          </Stack>
+          <Search />
+           </Flex>
+          
+         
           <ProductList
             filterCategory={filterCategory}
             setFilterCategory={setFilterCategory}

@@ -41,7 +41,7 @@ import {
     };
   
     return (
-      <Flex gap={1}>
+      <Flex w="40em" gap={1}>
         <InputGroup>
           <Input
             type="text"
