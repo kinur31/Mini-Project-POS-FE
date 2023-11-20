@@ -1,11 +1,17 @@
 import { Box, Text, Button, Flex, Divider, Stack } from "@chakra-ui/react";
-import Search from "../../components/search";
-import Filter from "../../components/filter";
-import Product from "../../components/product";
-// import CartButton from "../../components/cart/cartButton";
-import Pagination from "../../components/pagination";
-import Sidebar from "../../components/sidebar/sidebar";
+// import Search from "../../components/search";
+// import Filter from "../../components/filter";
+// import Product from "../../components/product";
+// import Pagination from "../../components/pagination";
+// import Sidebar from "../../components/sidebar/sidebar";
 import { useState } from "react";
+import HeadManageProduct from "../../components/manageProduct/headManage";
+import Search from "../../components/search/search";
+import Filter from "../../components/filterProduct/filter";
+import Pagination from "../../components/pagination/pagination";
+import Sidebar1 from "../../components/sidebar/sidebar1";
+import ProductList from "../../components/productList/bodyProductList";
+
 
 const Menu = () => {
   const [filterCategory, setFilterCategory] = useState(null);
@@ -18,7 +24,7 @@ const Menu = () => {
 
   return (
     <Flex>
-      <Sidebar/>
+      <Sidebar1/>
       <Box display="flex" flexDirection={{base: "column", lg:"row"}} justifyContent="space-between">
         <Flex
           flexDirection="column"
@@ -39,7 +45,7 @@ const Menu = () => {
             setSortBy={setSortBy}
           />
           </Stack>
-          <Product
+          <ProductList
             filterCategory={filterCategory}
             setFilterCategory={setFilterCategory}
             sortBy={sortBy}
@@ -56,8 +62,8 @@ const Menu = () => {
             setTotalPages={setTotalPages}
             />
         </Flex>
-        <Cart />
-        <CartButton/>
+        {/* <Cart />
+        <CartButton/> */}
         {/* <Divider/> */}
       </Box>
     </Flex>

@@ -11,6 +11,9 @@ import Category from "./pages/manageCategoryPage/manageCategory";
 import AddCategory from "./components/addCategory/addCategory";
 import ModalCategory from "./components/modal/modalCategory";
 import ModalProduct from "./components/modalEditProduct/editProduct";
+import Menu from "./pages/menu";
+import ProductList from "./components/productList/bodyProductList";
+
 
 
 
@@ -34,6 +37,8 @@ function App() {
         <Route path="/add-category" element={<AddCategory />}/>
         <Route path="/modal-category" element={<ModalCategory />}/>
         <Route path="/edit-product" element={<ModalProduct />}/>
+        <Route path="/head-menu" element={<Menu />}/>
+        <Route path="/product-list" element={<ProductList />}/>
       </Routes>
     </>
   );
