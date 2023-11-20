@@ -15,13 +15,16 @@ const SalesReportChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Adjust the date range as needed
         const startDate = '2023-05-17';
         const endDate = '2023-05-17';
 
-        // Update the URL to your backend endpoint
         const response = await axios.get(`http://localhost:8080/report?startDate=${startDate}&endDate=${endDate}`);
         const reportData = response.data.data;
+
+        const formattedData = reportData.map((dataPoint) => ({
+          ...dataPoint,
+          totalSales: formatRupiah(dataPoint.totalSales), 
+        }));
 
         setChartData(reportData);
       } catch (error) {

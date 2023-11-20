@@ -368,7 +368,7 @@ const Sidebar1 = () => {
                 </Text>
               </Box> */}
             </Link>
-            <Link to={""}>
+            <Link to={"/table-report"}>
               <Box
                 style={{
                   borderBottom:

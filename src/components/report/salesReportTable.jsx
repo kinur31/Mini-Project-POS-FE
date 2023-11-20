@@ -10,7 +10,7 @@ const formatRupiah = (number) => {
 };
 
 const SalesReportTable = () => {
-  const [tableData, setTableData] = useState([]);
+  const [reportData, setReportData] = useState([]);
   const [startDate, setStartDate] = useState('2023-05-17');
   const [endDate, setEndDate] = useState('2023-05-17');
   const toast = useToast();
@@ -18,9 +18,11 @@ const SalesReportTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/transaction/transaction-detail");
-        const reportData = response.data?.data;
-        setTableData(reportData);
+        const startDate = '2023-05-17';
+        const endDate = '2023-05-17';
+
+        const response = await axios.get("http://localhost:8080/report/all");
+        setReportData(response.data?.data);
       } catch (error) {
         console.error('Error fetching sales report:', error);
         toast({
@@ -34,14 +36,15 @@ const SalesReportTable = () => {
     };
 
     fetchData();
-  }, [toast, startDate, endDate]);
+  }, []);
 
   return (
-    <Box>
+    <Box justifyContent="center">
       <Table variant="striped" colorScheme="teal">
         <TableCaption>Sales Report</TableCaption>
         <Thead>
           <Tr>
+          <Th>User</Th>
             <Th>Transaction ID</Th>
             <Th>Product</Th>
             <Th>Quantity</Th>
@@ -50,13 +53,14 @@ const SalesReportTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {tableData.map((data) => (
-            <Tr key={data.transaction_id}>
-              <Td>{data.transaction_id}</Td>
-              <Td>{data.product_id}</Td>
-              <Td>{data.qty}</Td>
-              <Td>{formatRupiah(data.price)}</Td>
-              <Td>{data.createdAt}</Td>
+          {reportData.map((dataPoint, index) => (
+            <Tr key={index}>
+              <Td>{dataPoint.transaction.cashier.fullname}</Td>
+              <Td>{dataPoint.transaction_id}</Td>
+              <Td>{dataPoint.product_id}</Td>
+              <Td>{dataPoint.qty}</Td>
+              <Td>{formatRupiah(dataPoint.transaction.total_price)}</Td>
+              <Td>{dataPoint.transaction.createdAt}</Td>
             </Tr>
           ))}
         </Tbody>
