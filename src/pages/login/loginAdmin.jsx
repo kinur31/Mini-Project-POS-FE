@@ -35,7 +35,6 @@ const LoginAdmin = () => {
     },
     onSubmit: async (values) => {
       dispatch(loginAdmin(values.username, values.password));
-      // navigate("/admin");
     },
   });
 
