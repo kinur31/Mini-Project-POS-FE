@@ -78,14 +78,10 @@ export const loginCashier = (username, password) => {
 
       const { token, user } = res?.data?.data;
 
-      if (user?.role_id === 2) {
-        localStorage.setItem("token", token);
-        dispatch(setUser(user));
-        dispatch(loginSuccess());
-        toast.success("Logged in");
-      } else {
-        toast.error("You are not an cashier.");
-      }
+      localStorage.setItem("token", token);
+      dispatch(setUser(user));
+      dispatch(loginSuccess());
+      toast.success("Log out succes");
     } catch (err) {
       toast.error("Error logging in. Please check your credentials.");
     }
