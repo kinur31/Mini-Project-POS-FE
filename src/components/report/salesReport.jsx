@@ -2,6 +2,13 @@ import React, { useEffect, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import axios from 'axios';
 
+const formatRupiah = (number) => {
+  if (isNaN(number)) {
+    return '';
+  }
+  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(number);
+};
+
 const SalesReportChart = () => {
   const [chartData, setChartData] = useState([]);
 
