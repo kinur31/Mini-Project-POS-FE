@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../redux/reducer/authReducer";
 
