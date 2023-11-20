@@ -35,7 +35,7 @@ const LoginCashier = () => {
     },
     onSubmit: async (values) => {
       dispatch(loginCashier(values.username, values.password));
-      navigate("/");
+      navigate("/dashboard-cashier");
     },
   });
 
