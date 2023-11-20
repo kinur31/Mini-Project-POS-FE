@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { forgotPassword } from "../../redux/reducer/authReducer";
 import { useNavigate } from "react-router-dom";
 
-const ForgotPassword = () => {
+const ForgotPassword2 = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ const ForgotPassword = () => {
     },
     onSubmit: async (values) => {
       dispatch(forgotPassword(values.email));
-      navigate("/cek-email");
+      navigate("/cek-email2");
     },
   });
 
@@ -97,4 +97,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default ForgotPassword2;

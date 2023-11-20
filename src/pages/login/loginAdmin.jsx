@@ -38,10 +38,6 @@ const LoginAdmin = () => {
     },
   });
 
-  const handleChange = () => {
-    navigate("/");
-  };
-
   return (
     <>
       <VStack margin={"5%"}>
@@ -54,7 +50,6 @@ const LoginAdmin = () => {
                   aria-label="Search database"
                   icon={<IoIosArrowBack />}
                   color={"white"}
-                  onClick={handleChange}
                 />
               </Link>
             </Box>
@@ -122,7 +117,7 @@ const LoginAdmin = () => {
             Login
           </Button>
         </Box>
-        <Link to="/forgot-password">
+        <Link to="/forgot-password1">
           <Text color={"#1A72DD"}>Forgot Password?</Text>
         </Link>
       </VStack>

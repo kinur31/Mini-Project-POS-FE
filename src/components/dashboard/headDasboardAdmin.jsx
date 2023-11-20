@@ -1,6 +1,5 @@
 import { Box, Text } from "@chakra-ui/react";
 import ModalCreateCashier from "../modalCreateCashier/modalCreateCashier";
-import Search from "../search/search";
 
 const HeadDashboardAdmin = () => {
   return (
@@ -10,9 +9,6 @@ const HeadDashboardAdmin = () => {
           User Management
         </Text>
 
-        <Box display="flex" alignItems="center" gap="18px">
-          <Search />
-        </Box>
         <ModalCreateCashier />
       </Box>
     </Box>
