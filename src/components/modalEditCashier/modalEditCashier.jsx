@@ -1,14 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   Box,
   Button,
-  Checkbox,
   FormControl,
   FormLabel,
   Input,
-  Select,
-  Text,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -17,22 +14,14 @@ import {
   ModalBody,
   ModalCloseButton,
   useToast,
-  InputGroup,
-  Stack,
-  VStack,
-  Image,
-  FormErrorMessage,
 } from "@chakra-ui/react";
 import * as Yup from "yup";
-import { IconCloudUpload } from "@tabler/icons-react";
 import { useFormik } from "formik";
-import { useDropzone } from "react-dropzone";
 
 const productSchema = Yup.object().shape({
-  product_name: Yup.string().required("Product name is required"),
-  product_category_id: Yup.string().required("Category product is required"),
-  price: Yup.string().required("Price product is required"),
-  stock: Yup.string().required("Stock product is required"),
+  fullname: Yup.string().required("fullname is required"),
+  address: Yup.string().required("address is required"),
+  username: Yup.string().required("username is required"),
 });
 
 const ModalEditCashier = ({ isOpen, onClose, cashierById }) => {
@@ -89,45 +78,43 @@ const ModalEditCashier = ({ isOpen, onClose, cashierById }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent maxW="42em">
+      <ModalContent>
         <ModalHeader>Edit Cashier</ModalHeader>
         <ModalCloseButton />
         <ModalBody pb={6}>
           <form onSubmit={formik.handleSubmit}>
-            <Box display="flex" gap="20px">
-              <Box w="50%" display="flex" flexDirection="column" gap="20px">
-                <FormControl>
-                  <FormLabel htmlFor="product_name">Full name:</FormLabel>
-                  <Input
-                    id="fullname"
-                    name="fullname"
-                    onChange={formik.handleChange}
-                    value={formik.values.fullname}
-                  />
-                </FormControl>
+            <Box display="flex" flexDirection="column" gap="20px">
+              <FormControl>
+                <FormLabel>Full name:</FormLabel>
+                <Input
+                  id="fullname"
+                  name="fullname"
+                  onChange={formik.handleChange}
+                  value={formik.values.fullname}
+                />
+              </FormControl>
 
-                <FormControl>
-                  <FormLabel htmlFor="price">address:</FormLabel>
-                  <Input
-                    type="text"
-                    id="address"
-                    name="address"
-                    onChange={formik.handleChange}
-                    value={formik.values.address}
-                  />
-                </FormControl>
+              <FormControl>
+                <FormLabel>address:</FormLabel>
+                <Input
+                  type="text"
+                  id="address"
+                  name="address"
+                  onChange={formik.handleChange}
+                  value={formik.values.address}
+                />
+              </FormControl>
 
-                <FormControl>
-                  <FormLabel htmlFor="stock">username:</FormLabel>
-                  <Input
-                    type="text"
-                    id="username"
-                    name="username"
-                    onChange={formik.handleChange}
-                    value={formik.values.username}
-                  />
-                </FormControl>
-              </Box>
+              <FormControl>
+                <FormLabel>username:</FormLabel>
+                <Input
+                  type="text"
+                  id="username"
+                  name="username"
+                  onChange={formik.handleChange}
+                  value={formik.values.username}
+                />
+              </FormControl>
             </Box>
             <ModalFooter>
               <Button
@@ -137,7 +124,7 @@ const ModalEditCashier = ({ isOpen, onClose, cashierById }) => {
                 isLoading={formik.isSubmitting}
                 type="submit"
               >
-                Update Product
+                Update Cashier
               </Button>
               <Button mt={4} colorScheme="gray" onClick={onClose}>
                 Close

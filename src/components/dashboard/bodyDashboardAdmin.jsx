@@ -1,11 +1,13 @@
-import { Box, Image } from "@chakra-ui/react";
 import {
+  Box,
+  Image,
   Table,
   Thead,
   Tbody,
   Tr,
   Th,
   Td,
+  useDisclosure,
   TableContainer,
   useToast,
 } from "@chakra-ui/react";
@@ -15,8 +17,10 @@ import { useEffect, useState } from "react";
 import ModalEditCashier from "../modalEditCashier/modalEditCashier";
 
 const BodyDashboardAdmin = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
   const [cashier, setCashier] = useState([]);
+  const [cashierById, setCashierById] = useState(null);
   const [status, setCashierStatus] = useState(true);
   const fetchCashier = async () => {
     try {
@@ -71,6 +75,10 @@ const BodyDashboardAdmin = () => {
       });
     }
     window.location.reload();
+  };
+
+  const handleModalClose = () => {
+    onClose();
   };
 
   useEffect(() => {
@@ -146,6 +154,10 @@ const BodyDashboardAdmin = () => {
                       w="50px"
                       bgColor="#1A72DD"
                       color="#ffffff"
+                      onClick={() => {
+                        setCashierById(item);
+                        onOpen();
+                      }}
                     >
                       Edit
                     </Button>{" "}
@@ -166,6 +178,15 @@ const BodyDashboardAdmin = () => {
           </Tbody>
         </Table>
       </TableContainer>
+      {isOpen && (
+        <ModalEditCashier
+          isOpen={isOpen}
+          onClose={handleModalClose}
+          cashier={cashier}
+          setCashier={setCashier}
+          cashierById={cashierById}
+        />
+      )}
     </>
   );
 };
