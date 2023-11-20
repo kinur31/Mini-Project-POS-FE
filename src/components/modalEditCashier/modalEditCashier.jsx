@@ -18,7 +18,7 @@ import {
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-const productSchema = Yup.object().shape({
+const cashierSchema = Yup.object().shape({
   fullname: Yup.string().required("fullname is required"),
   address: Yup.string().required("address is required"),
   username: Yup.string().required("username is required"),
@@ -40,38 +40,46 @@ const ModalEditCashier = ({ isOpen, onClose, cashierById }) => {
     }
   }, [showAlert, onClose]);
 
+  const formRegister = async (fullname, address, username) => {
+    try {
+      await axios.patch(`http://localhost:8080/user/${cashierById.id}`, {
+        fullname: fullname,
+        address: address,
+        username: username,
+      });
+      toast({
+        position: "top",
+        title: "Cashier Registration",
+        description: "Success...",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      onClose();
+    } catch (err) {
+      console.error("Error in formRegister:", err);
+      toast({
+        position: "top",
+        title: "Cashier Registration",
+        description: "Error...",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+    window.location.reload();
+  };
+
   const formik = useFormik({
     initialValues: {
       fullname: cashierById?.fullname || "",
       address: cashierById?.address || "",
       username: cashierById?.username || "",
     },
-    validationSchema: productSchema,
-    onSubmit: async (values, { setSubmitting }) => {
-      try {
-        await axios.patch(`http://localhost:8080/user/${cashierById.id}`);
 
-        onClose();
-        toast({
-          position: "top",
-          title: "Cashier Updated",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
-      } catch (error) {
-        console.error("Error updating cashier:", error);
-        toast({
-          position: "top",
-          title: "Error",
-          description: "Failed to update cashier.",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-        });
-      } finally {
-        setSubmitting(false);
-      }
+    validationSchema: cashierSchema,
+    onSubmit: (values) => {
+      formRegister(values.fullname, values.address, values.username);
     },
   });
 
