@@ -20,7 +20,7 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { login } from "../../redux/reducer/authReducer";
+import { loginAdmin } from "../../redux/reducer/authReducer";
 
 const LoginAdmin = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,7 +34,7 @@ const LoginAdmin = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      dispatch(login(values.username, values.password));
+      dispatch(loginAdmin(values.username, values.password));
       // navigate("/admin");
     },
   });
