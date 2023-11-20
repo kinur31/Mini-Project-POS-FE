@@ -17,6 +17,25 @@ import CekEmail2 from "./pages/forgotPassword/cekEmailCashier";
 import ForgotPassword2 from "./pages/forgotPassword/forgotPassword2";
 import ForgotPassword1 from "./pages/forgotPassword/forgotPassword1";
 import { useDispatch, useSelector } from "react-redux";
+import Home from "./pages/home";
+import DashboardPage from "./pages/dashboard/dashboardPage";
+import Sidebar1 from "./components/sidebar/sidebar1";
+// import BodyManageProduct from "./components/manageProduct/manageProduct";
+import HeadManageProduct from "./components/manageProduct/headManage";
+import Products from "./pages/manageProductPage/manageProducts";
+import Category from "./pages/manageCategoryPage/manageCategory";
+import ModalCategory from "./components/modal/modalCategory";
+import ModalProduct from "./components/modalEditProduct/editProduct";
+import Menu from "./pages/menu";
+import ProductList from "./components/productList/bodyProductList";
+
+
+
+
+
+
+
+
 
 function App() {
   const { user, isLogin } = useSelector((state) => state.AuthReducer);
@@ -72,6 +91,18 @@ function App() {
             } />
         </Routes>
       </Auth>
+      <Routes>
+      <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/" element={<Home/>}/>
+        <Route path="/sidebars" element={<Sidebar1 />}/>
+        <Route path="/manage-product" element={<Products />}/>
+        <Route path="/manage-head" element={<HeadManageProduct />}/>
+        <Route path="/category" element={<Category />}/>
+        <Route path="/modal-category" element={<ModalCategory />}/>
+        <Route path="/edit-product" element={<ModalProduct />}/>
+        <Route path="/product-list" element={<Menu />}/>
+        {/* <Route path="/product-list" element={<ProductList />}/> */}
+      </Routes>
     </>
   );
 }
