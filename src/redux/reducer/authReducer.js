@@ -9,6 +9,11 @@ const initialState = {
     username: "",
     roleId: null,
     point: null,
+    roleId: null,
+    fullname: "",
+    address: "",
+    username: "",
+    email: "",
     avatar: "",
   },
   isLogin: false,
@@ -27,6 +32,16 @@ export const AuthReducer = createSlice({
         username,
         roleId,
         points,
+      const { id, roleId, fullname, address, username, email, avatar } =
+        action.payload;
+
+      state.user = {
+        id,
+        roleId,
+        fullname,
+        address,
+        username,
+        email,
         avatar,
       };
     },
@@ -39,11 +54,15 @@ export const AuthReducer = createSlice({
     },
     keepLoginSuccess: (state) => {
       state.isLogin = true;
+      if (!state.isLogin) {
+        state.isLogin = true;
+      }
     },
   },
 });
 
 export const loginCashier = (username, password) => {
+export const login = (username, password) => {
   return async (dispatch) => {
     try {
       const res = await axios.post("http://localhost:8080/auth/login", {
@@ -63,6 +82,11 @@ export const loginCashier = (username, password) => {
       }
     } catch (err) {
       toast.error("Error logging in. Please check your credentials.");
+      localStorage.setItem("token", res?.data?.data?.token);
+      dispatch(setUser(res?.data?.data?.user));
+      dispatch(loginSuccess());
+    } catch (err) {
+      alert(err?.response?.data);
     }
   };
 };

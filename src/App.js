@@ -8,6 +8,8 @@ import Auth from "./components/auth";
 import Menu from "./pages/menu";
 import DashboardCashier from "./pages/dashboard/cashier";
 // import Home from "./pages/home";
+import DashboardAdmin from "./pages/dashboard/dashboardAdmin";
+import Auth from "./components/auth";
 
 function App() {
   return (
@@ -22,7 +24,8 @@ function App() {
         <Route path="/dashboard-cashier" element={<DashboardCashier />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/menu/search" element={<Menu />} />
-      </Routes>
+          <Route path="/user-management" element={<DashboardAdmin />} />
+        </Routes>
       </Auth>
     </>
   );
