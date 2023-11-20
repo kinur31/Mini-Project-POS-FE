@@ -28,22 +28,22 @@ const TransactionDetailsChart = () => {
   const options = {
     chart: {
       type: 'bar',
-      height: 430
+      height: 250
     },
     plotOptions: {
       bar: {
         horizontal: true,
         dataLabels: {
           position: 'top',
-          maxItems: top10Data.length, // Display labels for all bars
+          maxItems: top10Data.length,
         },
       }
     },
     xaxis: {
       categories: top10Data.map((dataPoint) => dataPoint?.product?.product_name || ""),
       labels: {
-        show: true, // Show labels along the X-axis
-        rotate: -45, // Rotate the labels for better visibility
+        show: true, 
+        rotate: -45, 
       },
     },
     title: {
@@ -61,7 +61,7 @@ const TransactionDetailsChart = () => {
 
   return (
     <Box>
-      <ReactApexChart options={options} series={series} type="bar" height={350} />
+      <ReactApexChart options={options} series={series} type="bar" width={650} height={250} />
     </Box>
   );
 };

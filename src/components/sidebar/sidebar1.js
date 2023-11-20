@@ -88,7 +88,7 @@ const Sidebar1 = () => {
       {/* menu list */}
       <Box display="flex" flexDirection="column" gap="10px">
         {/* dashboard */}
-        <Link to={""}>
+        <Link to={"/report"}>
           <HStack
             style={{
               color: activeMenu === "dash" ? "#1A72DD" : "#707070",
