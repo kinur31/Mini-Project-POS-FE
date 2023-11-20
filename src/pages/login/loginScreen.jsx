@@ -1,6 +1,5 @@
 import { Box, VStack, Heading, Text, Button, Image } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-// import { FaUser } from "react-icons/fa";
 
 const LoginScreen = () => {
   const navigate = useNavigate();
