@@ -106,18 +106,6 @@ const LoginCashier = () => {
                 </Button>
               </InputRightElement>
             </InputGroup>
-            {/* <Input
-              type={showPassword ? "text" : "password"}
-              variant="filled"
-              borderRadius={"15px"}
-              height={"65px"}
-              size="lg"
-              placeholder="At least 8 characters"
-              value={formik.values.password}
-              onBlur={formik.handleBlur}
-              name="password"
-              onChange={formik.handleChange}
-            /> */}
           </Box>
         </Box>
         <Box width={"full"} mt={"10vh"}>
