@@ -4,8 +4,12 @@ import { useNavigate } from "react-router-dom";
 const LoginScreen = () => {
   const navigate = useNavigate();
 
-  const handleChange = () => {
+  const handleChange1 = () => {
     navigate("/login-admin");
+  };
+
+  const handleChange2 = () => {
+    navigate("/login-cashier");
   };
   return (
     <>
@@ -29,7 +33,7 @@ const LoginScreen = () => {
             width={"100%"}
             borderRadius={"15px"}
             height={"63px"}
-            onClick={handleChange}
+            onClick={handleChange1}
           >
             {" "}
             Log in as Admin{" "}
@@ -43,6 +47,7 @@ const LoginScreen = () => {
             width={"100%"}
             borderRadius={"15px"}
             height={"63px"}
+            onClick={handleChange2}
           >
             {" "}
             Log in as Cashier{" "}
