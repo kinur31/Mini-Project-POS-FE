@@ -34,12 +34,8 @@ const LoginAdmin = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      try {
-        await dispatch(loginAdmin(values.username, values.password));
-        navigate("/user-management");
-      } catch (error) {
-        console.error("Login failed:", error);
-      }
+      dispatch(loginAdmin(values.username, values.password));
+      // navigate("/admin");
     },
   });
 
