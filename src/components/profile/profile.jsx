@@ -31,15 +31,17 @@ const Profile = () => {
   return (
     <Box>
       <Box>
-        <Avatar size="md" src= {isLogin ? (
+        {/* {`${process.env.REACT_APP_IMAGE_URL}/avatar/${user?.avatar}`} */}
+        {isLogin ? (
           <Avatar
             size="md"
             rounded="full"
+            onClick={updateState}
             src={`${process.env.REACT_APP_IMAGE_URL}/avatar/${user?.avatar}`}
           />
         ) : (
-          <IconChevronRight size="18px" />
-        )} onClick={updateState} />
+          <IconChevronRight onClick={updateState} size="18px" />
+        )}
         {show && (
           <Box
             opacity={"1"}

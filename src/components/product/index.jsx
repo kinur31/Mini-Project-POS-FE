@@ -57,7 +57,7 @@ const Product = (props) => {
     fetchProduct();
     const pageFromURL = parseInt(props.page || props.currentPage, 10);
     props.setCurrentPage(pageFromURL);
-  }, [productName, props.filterCategory, props.sortBy, props.currentPage]);
+  }, [product, productName, props.filterCategory, props.sortBy, props.currentPage]);
 
   console.log(`current: ${props.currentPage}`)
   return (

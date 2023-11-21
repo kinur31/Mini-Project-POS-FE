@@ -124,6 +124,7 @@ const BodyDashboardAdmin = () => {
             {cashier.map((item, index) => (
               <Tr key={index}>
                 <Td>
+                {`${process.env.REACT_APP_IMAGE_URL}/cashier/${item?.avatar}`}
                   {item?.avatar !== null ? (
                     <Image
                       width="80px"

@@ -28,7 +28,7 @@ import { IconCloudUpload } from "@tabler/icons-react";
 import { useFormik } from "formik";
 import { useDropzone } from "react-dropzone";
 
-const AvatarModal = ({
+const ModalAvatar = ({
   isOpen,
   onClose,
   user,
@@ -187,4 +187,4 @@ const AvatarModal = ({
   );
 };
 
-export default AvatarModal;
+export default ModalAvatar;

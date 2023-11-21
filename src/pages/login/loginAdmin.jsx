@@ -1,5 +1,4 @@
-import { React, useState } from "react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import React, { useState } from "react";
 import {
   Box,
   HStack,
@@ -12,18 +11,19 @@ import {
   Text,
   InputGroup,
   InputRightElement,
+  useToast,
 } from "@chakra-ui/react";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { loginAdmin } from "../../redux/reducer/authReducer";
 
 const LoginAdmin = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const toastNotification = useToast();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,8 +34,28 @@ const LoginAdmin = () => {
       password: "",
     },
     onSubmit: async (values) => {
-      dispatch(loginAdmin(values.username, values.password));
-      navigate("/admin/user-management");
+      try {
+        await dispatch(loginAdmin(values.username, values.password));
+        navigate("/admin/user-management");
+
+        // Display success toast
+        toastNotification({
+          title: "Login Successful",
+          description: "Welcome!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
+      } catch (error) {
+        // Display error toast
+        toastNotification({
+          title: "Login Failed",
+          description: "Invalid username or password",
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
+      }
     },
   });
 
@@ -99,7 +119,7 @@ const LoginAdmin = () => {
                     setShowPassword((showPassword) => !showPassword)
                   }
                 >
-                  {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                  {showPassword ? "Hide" : "Show"}
                 </Button>
               </InputRightElement>
             </InputGroup>

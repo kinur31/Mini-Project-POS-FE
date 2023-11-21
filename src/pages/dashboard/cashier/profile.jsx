@@ -10,7 +10,7 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { useToast } from "@chakra-ui/toast";
 import { IconButton } from "@chakra-ui/button";
-import AvatarModal from "./AvatarModal";
+import AvatarModal from "../../../components/modal/modalAvatar";
 import { useDisclosure } from "@chakra-ui/hooks";
 
 const CashierProfile = (handleFile) => {

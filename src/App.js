@@ -26,16 +26,7 @@ import Products from "./pages/manageProductPage/manageProducts";
 import Category from "./pages/manageCategoryPage/manageCategory";
 import ModalCategory from "./components/modal/modalCategory";
 import ModalProduct from "./components/modalEditProduct/editProduct";
-import Menu from "./pages/menu";
 import ProductList from "./components/productList/bodyProductList";
-
-
-
-
-
-
-
-
 
 function App() {
   const { user, isLogin } = useSelector((state) => state.AuthReducer);
@@ -92,7 +83,7 @@ function App() {
         </Routes>
       </Auth>
       <Routes>
-      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/admin/dashboard" element={<DashboardPage />} />
         <Route path="/" element={<Home/>}/>
         <Route path="/sidebars" element={<Sidebar1 />}/>
         <Route path="/manage-product" element={<Products />}/>

@@ -60,7 +60,7 @@ const CashierSidebar = () => {
           {/* menu list */}
           <Box display="flex" flexDirection="column" gap="10px">
             {/* dashboard */}
-            <Link to={"/dashboard-cashier"}>
+            <Link to={"/cashier/dashboard"}>
               <HStack
                 style={{
                   color: activeMenu === "dash" ? "#1A72DD" : "#707070",
@@ -89,7 +89,7 @@ const CashierSidebar = () => {
               </HStack>
             </Link>
             {/* user management */}
-            <Link to={"/menu"}>
+            <Link to={"/cashier/menu"}>
               <HStack
                 style={{
                   color: activeMenu === "menu" ? "#1A72DD" : "#707070",
@@ -117,7 +117,7 @@ const CashierSidebar = () => {
                 </Text>
               </HStack>
             </Link>
-            <Link to={"/cashier-profile"}>
+            <Link to={"/cashier/profile"}>
               <HStack
                 style={{
                   color: activeMenu === "profile" ? "#1A72DD" : "#707070",
@@ -173,11 +173,7 @@ const CashierSidebar = () => {
                   visibility: activeUser === "profile" ? "visible" : "hidden",
                 }}
               />
-              <Box>
-                <Flex alignItems="center">
                   <Profile />
-                </Flex>
-              </Box>
               <Text
                 fontFamily="Nunito"
                 fontSize="18px"
