@@ -80,9 +80,10 @@ const Sidebar1 = () => {
     flexDirection="column"
     justifyContent="space-between"
     paddingBottom="32px"
+    w={60}
   >
     <Box display="flex" flexDirection="column" gap="45px">
-      <Link to={""}>
+      <Link to={"/dashboard"}>
         <HStack spacing="0" padding="32px 0 0 24px">
           <Flex justifyContent="center" gap="10px">
           <Image borderRadius="30px" w="50px" src={Logo} />
@@ -104,7 +105,7 @@ const Sidebar1 = () => {
       {/* menu list */}
       <Box display="flex" flexDirection="column" gap="10px">
         {/* dashboard */}
-        <Link to={""}>
+        <Link to={"/dashboard"}>
           <HStack
             style={{
               color: activeMenu === "dash" ? "#1A72DD" : "#707070",
@@ -337,7 +338,7 @@ const Sidebar1 = () => {
             flexDirection="column"
             gap="14px"
           >
-            <Link to={""}>
+            <Link to={"/report"}>
               <Box
                 style={{
                   borderBottom:
@@ -360,7 +361,7 @@ const Sidebar1 = () => {
               </Box>
             </Link>
             <Link to={""}>
-              <Box
+              {/* <Box
                 style={{
                   borderBottom:
                     activeSubReport === "transactions"
@@ -381,9 +382,9 @@ const Sidebar1 = () => {
                 >
                   Transactions
                 </Text>
-              </Box>
+              </Box> */}
             </Link>
-            <Link to={""}>
+            <Link to={"/table-report"}>
               <Box
                 style={{
                   borderBottom:
