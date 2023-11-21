@@ -6,6 +6,7 @@ import {
   HStack,
   VStack,
   Button,
+  Flex,
 } from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -20,6 +21,9 @@ import {
   IconChartBar,
 } from "@tabler/icons-react";
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
+import Logo from "../../assets/images/SSR1.png";
+import { FiMenu, FiX } from "react-icons/fi";
+
 
 const Sidebar1 = () => {
   const [activeUser, setActiveUser] = useState("");
@@ -28,6 +32,12 @@ const Sidebar1 = () => {
   const [activeSubProduct, setActiveSubProduct] = useState("product-list");
   const [showReportDropdown, setShowReportDropdown] = useState(false);
   const [activeSubReport, setActiveSubReport] = useState("analytics");
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
 
   const handleUserClick = (user) => {
     setActiveUser(user);
@@ -62,7 +72,7 @@ const Sidebar1 = () => {
     setActiveSubReport(menu);
   };
   return (
-    <Box
+   <Box
     top={0}
     position="sticky"
     h="100vh"
@@ -75,17 +85,23 @@ const Sidebar1 = () => {
     <Box display="flex" flexDirection="column" gap="45px">
       <Link to={"/dashboard"}>
         <HStack spacing="0" padding="32px 0 0 24px">
-          <Image src="../../../public/images/logo.png" />
+          <Flex justifyContent="center" gap="10px">
+          <Image borderRadius="30px" w="50px" src={Logo} />
           <Text
             fontFamily="Paytone One"
             fontSize="32px"
             color="#1A72DD"
             fontWeight="400"
           >
-            SSR
+            SRR
           </Text>
+          </Flex>
         </HStack>
       </Link>
+      <Box
+        display={isOpen ? "block" : "none"} // Show/hide sidebar content based on isOpen state
+      >
+      </Box>
       {/* menu list */}
       <Box display="flex" flexDirection="column" gap="10px">
         {/* dashboard */}
@@ -197,7 +213,7 @@ const Sidebar1 = () => {
             flexDirection="column"
             gap="14px"
           >
-            <Link to={""}>
+            <Link to={"/product-list"}>
               <Box
                 style={{
                   borderBottom:
@@ -245,7 +261,7 @@ const Sidebar1 = () => {
                 </Text>
               </Box>
             </Link>
-            <Link to={"/manage-product"}>
+            <Link to={"/category"}>
               <Box
                 style={{
                   borderBottom:
