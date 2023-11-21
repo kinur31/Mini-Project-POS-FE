@@ -13,7 +13,7 @@ import Sidebar1 from "../../components/sidebar/sidebar1";
 import ProductList from "../../components/productList/bodyProductList";
 
 
-const Menu = () => {
+const ProductListPage = () => {
   const [filterCategory, setFilterCategory] = useState(null);
   const [sortBy, setSortBy] = useState(null); // Default sorting by name in ascending order
   const [currentPage, setCurrentPage] = useState(1);
@@ -74,4 +74,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default ProductListPage;

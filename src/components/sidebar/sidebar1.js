@@ -23,9 +23,12 @@ import {
 import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
 import Logo from "../../assets/images/SSR1.png";
 import { FiMenu, FiX } from "react-icons/fi";
+import Profile from "../profile/profile";
+import { useSelector } from "react-redux";
 
 
 const Sidebar1 = () => {
+  const { user, isLogin } = useSelector((state) => state.AuthReducer);
   const [activeUser, setActiveUser] = useState("");
   const [activeMenu, setActiveMenu] = useState("dash");
   const [showProductDropdown, setShowProductDropdown] = useState(false);
@@ -83,7 +86,7 @@ const Sidebar1 = () => {
     w={60}
   >
     <Box display="flex" flexDirection="column" gap="45px">
-      <Link to={"/dashboard"}>
+      <Link to={"/admin/dashboard"}>
         <HStack spacing="0" padding="32px 0 0 24px">
           <Flex justifyContent="center" gap="10px">
           <Image borderRadius="30px" w="50px" src={Logo} />
@@ -105,7 +108,7 @@ const Sidebar1 = () => {
       {/* menu list */}
       <Box display="flex" flexDirection="column" gap="10px">
         {/* dashboard */}
-        <Link to={"/dashboard"}>
+        <Link to={"/admin/dashboard"}>
           <HStack
             style={{
               color: activeMenu === "dash" ? "#1A72DD" : "#707070",
@@ -134,7 +137,7 @@ const Sidebar1 = () => {
           </HStack>
         </Link>
         {/* user management */}
-        <Link to={"/user-management"}>
+        <Link to={"/admin/user-management"}>
           <HStack
             style={{
               color: activeMenu === "user" ? "#1A72DD" : "#707070",
@@ -213,7 +216,7 @@ const Sidebar1 = () => {
             flexDirection="column"
             gap="14px"
           >
-            <Link to={"/product-list"}>
+            <Link to={"/admin/product-list"}>
               <Box
                 style={{
                   borderBottom:
@@ -237,7 +240,7 @@ const Sidebar1 = () => {
                 </Text>
               </Box>
             </Link>
-            <Link to={"/manage-product"}>
+            <Link to={"/admin/manage-product"}>
               <Box
                 style={{
                   borderBottom:
@@ -261,7 +264,7 @@ const Sidebar1 = () => {
                 </Text>
               </Box>
             </Link>
-            <Link to={"/category"}>
+            <Link to={"/admin/category"}>
               <Box
                 style={{
                   borderBottom:
@@ -338,7 +341,7 @@ const Sidebar1 = () => {
             flexDirection="column"
             gap="14px"
           >
-            <Link to={"/report"}>
+            <Link to={"/admin/report"}>
               <Box
                 style={{
                   borderBottom:
@@ -384,7 +387,7 @@ const Sidebar1 = () => {
                 </Text>
               </Box> */}
             </Link>
-            <Link to={"/table-report"}>
+            <Link to={"/admin/table-report"}>
               <Box
                 style={{
                   borderBottom:
@@ -427,33 +430,31 @@ const Sidebar1 = () => {
           alignItems="center"
           justifyContent="space-between"
         >
-          <Box display="flex" gap="18px" alignItems="center">
-            <Box
-              w="5px"
-              h="56px"
-              bgColor="#1A72DD"
-              borderTopRightRadius="5px"
-              borderBottomRightRadius="5px"
-              style={{
-                visibility: activeUser === "profile" ? "visible" : "hidden",
-              }}
-            />
-            <Box
-              w="30px"
-              h="30px"
-              bgColor="#1A72DD"
-              borderRadius="50%"
-            ></Box>
-            <Text
-              fontFamily="Nunito"
-              fontSize="16px"
-              fontWeight="600"
-              isTruncated
-             
-            >
-              Fransisca Angelica
-            </Text>
-          </Box>
+                    <Box display="flex" gap="18px" alignItems="center">
+              <Box
+                w="5px"
+                h="56px"
+                bgColor="#1A72DD"
+                borderTopRightRadius="5px"
+                borderBottomRightRadius="5px"
+                style={{
+                  visibility: activeUser === "profile" ? "visible" : "hidden",
+                }}
+              />
+              <Box>
+                <Flex alignItems="center">
+                  <Profile />
+                </Flex>
+              </Box>
+              <Text
+                fontFamily="Nunito"
+                fontSize="20px"
+                fontWeight="600"
+                isTruncated
+              >
+                {isLogin ? user?.fullname : "Not Found"}
+              </Text>
+            </Box>
           <Box padding="0 10px 0 0">
             {activeUser === "profile" ? (
               <IconChevronLeft size="18px" />

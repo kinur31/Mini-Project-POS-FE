@@ -5,26 +5,17 @@ import Report from "../../components/report/chart";
 import TransactionDetailsChart from "../../components/report/productSold";
 import SalesReportChart from "../../components/report/salesReport";
 
-
-
-
-
 const PageReport = () => {
   return (
-   
-   
     <Box>
-  
-    <Flex alignItems="center" w="full" m={4} p={6}>
-      <Report/>
-       {/* <SalesChart/> */}
-      <TransactionDetailsChart />
+      <Flex alignItems="center" w="full" m={4} p={6}>
+        <Report />
+        {/* <SalesChart/> */}
+        <TransactionDetailsChart />
       </Flex>
       {/* <TransactionChart/> */}
-<SalesReportChart/>
-</Box>
-
-   
+      <SalesReportChart />
+    </Box>
   );
 };
 
