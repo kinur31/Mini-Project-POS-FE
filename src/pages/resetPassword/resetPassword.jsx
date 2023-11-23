@@ -55,7 +55,7 @@ const ResetPassword = () => {
     validationSchema: LoginSchema,
     onSubmit: async (values) => {
       dispatch(resetPassword(values.password));
-      navigate("/cek-email");
+      navigate("/");
     },
   });
 
