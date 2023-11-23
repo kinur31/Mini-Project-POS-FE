@@ -28,7 +28,7 @@ function App() {
           <Route path="/user-management" element={<DashboardAdmin />} />
           <Route
             path="/admin"
-            element={user?.id === 1 ? <DashboardAdmin /> : <LoginScreen />}
+            element={user?.roleId === 1 ? <DashboardAdmin /> : <LoginScreen />}
           />
         </Routes>
       </Auth>
